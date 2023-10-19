@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/portfolio")
+@RequestMapping("/portfolio")
 public class PortfolioItemController {
 
     private final PortfolioItemService portfolioItemService;

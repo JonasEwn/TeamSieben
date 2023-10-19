@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import jakarta.annotation.PostConstruct;
 
+import java.util.List;
+
 @Service
 public class PortfolioItemInitialService {
 
@@ -25,7 +27,10 @@ public class PortfolioItemInitialService {
         PortfolioItem item1 = new PortfolioItem("123", "A Company", 100.0, 50);
         PortfolioItem item2 = new PortfolioItem("4567", "B Company", 75.0, 30);
 
-        portfolioItemRepository.save(item1);
-        portfolioItemRepository.save(item2);
+        //portfolioItemRepository.save(item1);
+        //portfolioItemRepository.save(item2);
+        portfolioItemRepository.saveAll(
+                List.of(item1, item2)
+                );
     }
 }
