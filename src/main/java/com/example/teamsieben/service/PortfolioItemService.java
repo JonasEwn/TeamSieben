@@ -48,9 +48,18 @@ public class PortfolioItemService {
     }
 
     public PortfolioItem addNewPortfolioItem(PortfolioItem item) {
-        return savePortfolioItem(item);
+        // Item wird nur gepostet, wenn IsInputValid()-Funktion wahr zurück gibt
+        if(isInputValid(item.getDescription())){
+            return savePortfolioItem(item);
+        }
+        return null;
     }
     public void deletePortfolioItem(Long id) {
         portfolioItemRepository.deleteById(id);
+    }
+
+    public boolean isInputValid(String description){
+        // Funktion testet ob Description-Input kleiner als 255 ist
+        return description.length() <= 255;
     }
 }
