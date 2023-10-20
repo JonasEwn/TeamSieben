@@ -37,6 +37,9 @@ public class PortfolioItemService {
             existingItem.setName(updatedItem.getName());
             existingItem.setPurchasePrice(updatedItem.getPurchasePrice());
             existingItem.setQuantity(updatedItem.getQuantity());
+            existingItem.setDescription(updatedItem.getDescription());
+            existingItem.setCategory(updatedItem.getCategory());
+            existingItem.setPurchaseDate(updatedItem.getPurchaseDate());
 
             return portfolioItemRepository.save(existingItem);
         } else {
@@ -44,6 +47,9 @@ public class PortfolioItemService {
         }
     }
 
+    public PortfolioItem addNewPortfolioItem(PortfolioItem item) {
+        return savePortfolioItem(item);
+    }
     public void deletePortfolioItem(Long id) {
         portfolioItemRepository.deleteById(id);
     }

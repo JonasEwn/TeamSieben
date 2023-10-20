@@ -29,9 +29,10 @@ public class PortfolioItemController {
     }
 
     @PostMapping
-    public ResponseEntity<PortfolioItem> addPortfolioItem(@RequestBody PortfolioItem newItem) {
-        PortfolioItem addedItem = portfolioItemService.savePortfolioItem(newItem);
-        return new ResponseEntity<>(addedItem, HttpStatus.CREATED);
+    public ResponseEntity<PortfolioItem> addPortfolioItem(@RequestBody PortfolioItem item) {
+        PortfolioItem newItem;
+        newItem = portfolioItemService.addNewPortfolioItem(item);
+        return new ResponseEntity<>(newItem, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
