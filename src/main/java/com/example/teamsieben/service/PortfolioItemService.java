@@ -31,7 +31,7 @@ public class PortfolioItemService {
     public PortfolioItem updatePortfolioItem(Long id, PortfolioItem updatedItem) {
         Optional<PortfolioItem> itemOptional = portfolioItemRepository.findById(id);
 
-        if (itemOptional.isPresent()) {
+        if (itemOptional.isPresent() && isInputValid(updatedItem.getDescription())) {
             PortfolioItem existingItem = itemOptional.get();
             existingItem.setWkn(updatedItem.getWkn());
             existingItem.setName(updatedItem.getName());
