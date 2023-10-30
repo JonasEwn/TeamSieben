@@ -9,10 +9,10 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-//@Table()
+@Table(name = "portfolio_item")
 public class PortfolioItem {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String wkn;
     private String name;
