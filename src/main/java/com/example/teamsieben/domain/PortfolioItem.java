@@ -18,7 +18,6 @@ public class PortfolioItem {
     private String name;
     private double purchasePrice;
     private int quantity;
-    @Column
     private String description;
     private String category;
     @Column
