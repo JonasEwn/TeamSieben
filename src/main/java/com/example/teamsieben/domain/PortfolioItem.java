@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
+//@Table()
 public class PortfolioItem {
     @Id
     @GeneratedValue
