@@ -60,6 +60,7 @@ public class PortfolioItemService {
 
     public boolean isInputValid(String description){
         // Funktion testet ob Description-Input kleiner als 255 ist
-        return description.length() <= 255;
+        return description == null || description.length() <= 255;
     }
+
 }
