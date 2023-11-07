@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PortfolioItemRepository extends CrudRepository<PortfolioItem, Long> {
-    @Query("SELECT p.id as id, p.wkn as wkn, p.name as name, p.purchasePrice as purchasePrice, p.quantity as quantity, p.purchaseDate as purchaseDate FROM PortfolioItem p")
+    @Query("SELECT id as id, wkn as wkn, name as name, purchasePrice as purchasePrice, quantity as quantity, purchaseDate as purchaseDate FROM PortfolioItem ")
     Iterable<PortfolioItemList> findPortfolioItemsWithoutDescriptionAndCategory();
 }
 

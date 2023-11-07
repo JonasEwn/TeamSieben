@@ -30,9 +30,9 @@ public class PortfolioItemService {
     }
 
 
-    public Iterable<PortfolioItem> getAllPortfolioItems() {
+   /* public Iterable<PortfolioItem> getAllPortfolioItems() {
         return portfolioItemRepository.findAll();
-    }
+    }*/
 
     public PortfolioItem updatePortfolioItem(Long id, PortfolioItem updatedItem) {
         Optional<PortfolioItem> itemOptional = portfolioItemRepository.findById(id);
