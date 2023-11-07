@@ -1,11 +1,10 @@
 package com.example.teamsieben.service;
 
+import com.example.teamsieben.domain.PortfolioItemList;
 import com.example.teamsieben.domain.PortfolioItem;
 import com.example.teamsieben.persistence.PortfolioItemRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,22 +25,10 @@ public class PortfolioItemService {
         return itemOptional.orElse(null);
     }
 
-    public Iterable<PortfolioItem> listPortfolioItems(){
-        Iterable<PortfolioItem> items = portfolioItemRepository.findAll();
-
-        List<PortfolioItem> selectedAttributes = new ArrayList<>();
-        for (PortfolioItem item : items){
-            PortfolioItem selectedItems = new PortfolioItem();
-            selectedItems.setId(item.getId());
-            selectedItems.setName(item.getName());
-            selectedItems.setWkn(item.getWkn());
-            selectedItems.setPurchasePrice(item.getPurchasePrice());
-            selectedItems.setQuantity(item.getQuantity());
-            System.out.println(selectedItems);
-            selectedAttributes.add(selectedItems);
-        }
-        return selectedAttributes;
+    public Iterable<PortfolioItemList> listPortfolioItemsWithoutDescriptionAndCategory() {
+        return portfolioItemRepository.findPortfolioItemsWithoutDescriptionAndCategory();
     }
+
 
     public Iterable<PortfolioItem> getAllPortfolioItems() {
         return portfolioItemRepository.findAll();
