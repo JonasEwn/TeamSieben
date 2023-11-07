@@ -28,6 +28,12 @@ public class PortfolioItemController {
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
 
+    @GetMapping("/portfolio-items")
+    public ResponseEntity<Iterable<PortfolioItem>> listAllPortfolioItems(){
+        Iterable<PortfolioItem> item = portfolioItemService.listPortfolioItems();
+        return new ResponseEntity<>(item, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<PortfolioItem> addPortfolioItem(@RequestBody PortfolioItem item) {
         PortfolioItem newItem;
