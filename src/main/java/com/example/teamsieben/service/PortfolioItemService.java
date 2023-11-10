@@ -1,6 +1,5 @@
 package com.example.teamsieben.service;
 
-import com.example.teamsieben.domain.PortfolioItemList;
 import com.example.teamsieben.domain.PortfolioItem;
 import com.example.teamsieben.persistence.PortfolioItemRepository;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class PortfolioItemService {
         return itemOptional.orElse(null);
     }
 
-    public Iterable<PortfolioItemList> listPortfolioItemsWithoutDescriptionAndCategory() {
+    public Iterable<PortfolioItem> listPortfolioItemsWithoutDescriptionAndCategory() {
         return portfolioItemRepository.findPortfolioItemsWithoutDescriptionAndCategory();
     }
 

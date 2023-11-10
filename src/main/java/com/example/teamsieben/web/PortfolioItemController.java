@@ -1,6 +1,5 @@
 package com.example.teamsieben.web;
 
-import com.example.teamsieben.domain.PortfolioItemList;
 import com.example.teamsieben.domain.PortfolioItem;
 import com.example.teamsieben.service.PortfolioItemService;
 import org.springframework.http.HttpStatus;
@@ -24,8 +23,8 @@ public class PortfolioItemController {
     }
 
     @GetMapping
-    public ResponseEntity<Iterable<PortfolioItemList>> listPortfolioItemsWithoutDescriptionAndCategory() {
-        Iterable<PortfolioItemList> items = portfolioItemService.listPortfolioItemsWithoutDescriptionAndCategory();
+    public ResponseEntity<Iterable<PortfolioItem>> listPortfolioItemsWithoutDescriptionAndCategory() {
+        Iterable<PortfolioItem> items = portfolioItemService.listPortfolioItemsWithoutDescriptionAndCategory();
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
 
