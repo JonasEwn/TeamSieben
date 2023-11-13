@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>My Dialog</h2>
+<mat-dialog-content>
+  <form>
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="Name" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="price" placeholder="Price" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="wkn" placeholder="WKN" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary">Submit</button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="'close'">Close</button>
+</mat-dialog-actions>
