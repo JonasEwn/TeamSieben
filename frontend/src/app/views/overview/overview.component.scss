@@ -1,0 +1,36 @@
+:host {
+  padding-left: 8px;
+}
+
+.container {
+  position: relative;
+}
+
+.table-container {
+  position: relative;
+  max-height: 100%;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.paginator-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+th {
+  font-weight: bold;
+  border-bottom: solid 2px #ccc;
+}
+
+.spacer {
+  padding-left: 16px;
+}
