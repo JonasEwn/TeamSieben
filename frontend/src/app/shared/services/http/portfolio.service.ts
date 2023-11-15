@@ -33,18 +33,89 @@ export class PortfolioService {
   }
 
   /**
-   * Generate random portfolio list.
-   */
+   * Generate random portfolio list. */
+  
   private generatePortfolioList(): void {
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 6; i++) { 
+      if (i ==1) {
       const newItem: Portfolio = {
         id: `ID${i}`,
-        name: `Portfolio ${i}`,
-        price: `$${(Math.random() * 1000).toFixed(2)}`,
-        wkn: `WKN- ${Math.floor(Math.random() * 1000000)}`,
-      };
-
+        name: 'Allianz',
+        price: '100',
+        wkn: '123456',
+        quantity: '100',
+        description: 'Versicherungsgesellschaft',
+        category: 'Aktie',
+        purchaseDate: '01.11.2023'
+        
+        }
+        this.portfolioList.push(newItem);
+    } else if (i == 2) {
+      const newItem: Portfolio = {
+        id: `ID${i}`,
+        name: 'Allianz',
+        price: '200',
+        wkn: '123456',
+        quantity: '200',
+        description: 'Versicherungsgesellschaft',
+        category: 'Aktie',
+        purchaseDate: '02.11.2023'
+        }
+        this.portfolioList.push(newItem);
+    }
+    else if (i == 3) {
+      const newItem: Portfolio = {
+        id: `ID${i}`,
+        name: 'BASF',
+        price: '50',
+        wkn: '987654',
+        quantity: '50',
+        description: 'Chemie Unternehmen',
+        category: 'Aktie',
+        purchaseDate: '02.11.2023'
+        }
+        this.portfolioList.push(newItem);
+  }
+  else if (i == 4) {
+    const newItem: Portfolio = {
+      id: `ID${i}`,
+      name: 'BASF',
+      price: '100',
+      wkn: '987654',
+      quantity: '40',
+      description: 'Chemie Unternehmen',
+      category: 'Aktie',
+      purchaseDate: '02.11.2023'
+      }
       this.portfolioList.push(newItem);
+}
+else if (i == 5) {
+  const newItem: Portfolio = {
+    id: `ID${i}`,
+    name: 'BASF',
+    price: '30',
+    wkn: '987654',
+    quantity: '200',
+    description: 'Chemie Unternehmen',
+    category: 'Aktie',
+    purchaseDate: '03.11.2023'
+    }
+    this.portfolioList.push(newItem);
+}
+else if (i == 6) {
+  const newItem: Portfolio = {
+    id: `ID${i}`,
+    name: 'Bitcoin',
+    price: '32000',
+    wkn: 'BTC',
+    quantity: '1',
+    description: 'Kryptowährung',
+    category: 'Crypto',
+    purchaseDate: '03.11.2023'
+    }
+    this.portfolioList.push(newItem);
+}
     }
   }
+
 }
