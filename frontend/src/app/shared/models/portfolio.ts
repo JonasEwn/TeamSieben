@@ -4,7 +4,7 @@ export interface Portfolio {
   wkn: string;
   name: string;
   price: string;
-  quantity: string;
+  quantity: number;
   description: string;
   category: string;
   purchaseDate: string;
