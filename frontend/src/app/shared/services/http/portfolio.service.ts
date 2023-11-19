@@ -36,7 +36,7 @@ export class PortfolioService {
   private generatePortfolioList(): void {
     this.portfolioList = [
       {
-        id: 'ID1',
+        id: 1,
         name: 'Allianz',
         price: '100',
         wkn: '123456',
@@ -47,7 +47,7 @@ export class PortfolioService {
         gesamtPreis: 1
       },
       {
-        id: 'ID2',
+        id: 2,
         name: 'Allianz',
         price: '200',
         wkn: '123456',
@@ -58,7 +58,7 @@ export class PortfolioService {
         gesamtPreis: 1
       },
       {
-        id: 'ID3',
+        id: 3,
         name: 'BASF',
         price: '50',
         wkn: '987654',
@@ -69,7 +69,7 @@ export class PortfolioService {
         gesamtPreis: 1
       },
       {
-        id: 'ID4',
+        id: 4,
         name: 'BASF',
         price: '40',
         wkn: '987654',
@@ -80,7 +80,7 @@ export class PortfolioService {
         gesamtPreis: 1
       },
       {
-        id: 'ID5',
+        id: 5,
         name: 'BASF',
         price: '30',
         wkn: '987654',
@@ -91,7 +91,7 @@ export class PortfolioService {
         gesamtPreis: 1
       },
       {
-        id: 'ID6',
+        id: 6,
         name: 'Bitcoin',
         price: '32000',
         wkn: 'BTC',

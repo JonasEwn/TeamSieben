@@ -1,6 +1,6 @@
 // Portfolio model
 export interface Portfolio {
-  id: string;
+  id: number;
   wkn: string;
   name: string;
   price: string;
