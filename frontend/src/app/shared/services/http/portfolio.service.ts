@@ -44,6 +44,7 @@ export class PortfolioService {
         description: 'Versicherungsgesellschaft',
         category: 'Aktie',
         purchaseDate: '01.11.2023',
+        gesamtPreis: 1
       },
       {
         id: 'ID2',
@@ -54,6 +55,7 @@ export class PortfolioService {
         description: 'Versicherungsgesellschaft',
         category: 'Aktie',
         purchaseDate: '02.11.2023',
+        gesamtPreis: 1
       },
       {
         id: 'ID3',
@@ -64,6 +66,7 @@ export class PortfolioService {
         description: 'Chemie Unternehmen',
         category: 'Aktie',
         purchaseDate: '02.11.2023',
+        gesamtPreis: 1
       },
       {
         id: 'ID4',
@@ -74,6 +77,7 @@ export class PortfolioService {
         description: 'Chemie Unternehmen',
         category: 'Aktie',
         purchaseDate: '02.11.2023',
+        gesamtPreis: 1
       },
       {
         id: 'ID5',
@@ -84,6 +88,7 @@ export class PortfolioService {
         description: 'Chemie Unternehmen',
         category: 'Aktie',
         purchaseDate: '03.11.2023',
+        gesamtPreis: 1
       },
       {
         id: 'ID6',
@@ -94,6 +99,7 @@ export class PortfolioService {
         description: 'Kryptowährung',
         category: 'Crypto',
         purchaseDate: '03.11.2023',
+        gesamtPreis: 1
       },
     ];
 

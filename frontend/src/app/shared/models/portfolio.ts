@@ -8,6 +8,7 @@ export interface Portfolio {
   description: string;
   category: string;
   purchaseDate: string;
+  gesamtPreis: number;
   
 
 
