@@ -16,7 +16,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['wkn', 'purchaseDate', 'quantity', 'price', 'action'];
+  displayedColumns: string[] = ['wkn', 'purchaseDate', 'quantity', 'price', 'totalPrice', 'action'];
 
   resultsLength = 0;
   isLoadingResults = true;
