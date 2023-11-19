@@ -32,19 +32,97 @@ export class PortfolioService {
     });
   }
 
-  /**
-   * Generate random portfolio list.
-   */
-  private generatePortfolioList(): void {
-    for (let i = 1; i <= 100; i++) {
-      const newItem: Portfolio = {
-        id: `ID${i}`,
-        name: `Portfolio ${i}`,
-        price: `$${(Math.random() * 1000).toFixed(2)}`,
-        wkn: `WKN- ${Math.floor(Math.random() * 1000000)}`,
-      };
 
-      this.portfolioList.push(newItem);
-    }
+  private generatePortfolioList(): void {
+    this.portfolioList = [
+      {
+        id: 1,
+        name: 'Allianz',
+        price: '100',
+        wkn: '123456',
+        quantity: 100,
+        description: 'Versicherungsgesellschaft',
+        category: 'Aktie',
+        purchaseDate: '01.11.2023',
+        totalPrice: 1
+      },
+      {
+        id: 2,
+        name: 'Allianz',
+        price: '200',
+        wkn: '123456',
+        quantity: 200,
+        description: 'Versicherungsgesellschaft',
+        category: 'Aktie',
+        purchaseDate: '02.11.2023',
+        totalPrice: 1
+      },
+      {
+        id: 3,
+        name: 'BASF',
+        price: '50',
+        wkn: '987654',
+        quantity: 50,
+        description: 'Chemie Unternehmen',
+        category: 'Aktie',
+        purchaseDate: '02.11.2023',
+        totalPrice: 1
+      },
+      {
+        id: 4,
+        name: 'BASF',
+        price: '40',
+        wkn: '987654',
+        quantity: 100,
+        description: 'Chemie Unternehmen',
+        category: 'Aktie',
+        purchaseDate: '02.11.2023',
+        totalPrice: 1
+      },
+      {
+        id: 5,
+        name: 'BASF',
+        price: '30',
+        wkn: '987654',
+        quantity: 200,
+        description: 'Chemie Unternehmen',
+        category: 'Aktie',
+        purchaseDate: '03.11.2023',
+        totalPrice: 1
+      },
+      {
+        id: 6,
+        name: 'Bitcoin',
+        price: '32000',
+        wkn: 'BTC',
+        quantity: 1,
+        description: 'Kryptowährung',
+        category: 'Crypto',
+        purchaseDate: '03.11.2023',
+        totalPrice: 1
+      },
+    ];
+
+    // calculate average price for each WKN
+const portfolioMap = new Map<string, Portfolio[]>();
+for (const portfolio of this.portfolioList) {
+  const portfolioGroup = portfolioMap.get(portfolio.wkn);
+  if (portfolioGroup) {
+    portfolioGroup.push(portfolio);
+  } else {
+    portfolioMap.set(portfolio.wkn, [portfolio]);
+  }
+}
+
+for (const [wkn, portfolios] of portfolioMap) {
+  const totalPrice = portfolios.reduce((acc, portfolio) => acc + parseFloat(portfolio.price) * portfolio.quantity, 0);
+  const totalQuantity = portfolios.reduce((acc, portfolio) => acc + Number(portfolio.quantity), 0);
+  const averagePrice = totalPrice / totalQuantity;
+
+  for (const portfolio of portfolios) {
+    portfolio.price = averagePrice.toFixed(2);
+  }
+}
+
   }
 }

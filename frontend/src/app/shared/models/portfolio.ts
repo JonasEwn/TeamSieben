@@ -1,7 +1,17 @@
 // Portfolio model
 export interface Portfolio {
-  id: string;
+  id: number;
+  wkn: string;
   name: string;
   price: string;
-  wkn: string;
+  quantity: number;
+  description: string;
+  category: string;
+  purchaseDate: string;
+  totalPrice: number;
+  
+  
+
+
+
 }
