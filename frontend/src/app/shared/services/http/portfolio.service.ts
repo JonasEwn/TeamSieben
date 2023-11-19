@@ -101,9 +101,9 @@ export class PortfolioService {
         purchaseDate: '03.11.2023',
         totalPrice: 1
       },
-    ];
-
-    // calculate average price for each WKN
+    ]; 
+    
+    // calculate average price and total price for each WKN
 const portfolioMap = new Map<string, Portfolio[]>();
 for (const portfolio of this.portfolioList) {
   const portfolioGroup = portfolioMap.get(portfolio.wkn);
@@ -116,13 +116,16 @@ for (const portfolio of this.portfolioList) {
 
 for (const [wkn, portfolios] of portfolioMap) {
   const totalPrice = portfolios.reduce((acc, portfolio) => acc + parseFloat(portfolio.price) * portfolio.quantity, 0);
+  const roundedTotalPrice = parseFloat(totalPrice.toFixed(2));
   const totalQuantity = portfolios.reduce((acc, portfolio) => acc + Number(portfolio.quantity), 0);
   const averagePrice = totalPrice / totalQuantity;
 
   for (const portfolio of portfolios) {
     portfolio.price = averagePrice.toFixed(2);
+    portfolio.totalPrice = roundedTotalPrice;
   }
 }
+
 
   }
 }
