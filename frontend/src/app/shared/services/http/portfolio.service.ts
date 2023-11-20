@@ -96,7 +96,7 @@ export class PortfolioService {
         price: '32000',
         wkn: 'BTC',
         quantity: 1,
-        description: 'Kryptowährunge',
+        description: 'Kryptowährung',
         category: 'Crypto',
         purchaseDate: '03.11.2023',
         totalPrice: 1
