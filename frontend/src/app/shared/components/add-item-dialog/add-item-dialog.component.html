@@ -1,5 +1,6 @@
+<!-- Titel des Dialogs -->
 <h2 mat-dialog-title>My Dialog</h2>
-<mat-dialog-content>
+<mat-dialog-content>      <!-- Dialoginhaltmit Eingabefeldern-->
   <form>
     <mat-form-field>
       <input matInput formControlName="name" placeholder="Name" />
@@ -13,9 +14,9 @@
       <input matInput formControlName="wkn" placeholder="WKN" />
     </mat-form-field>
 
-    <button mat-raised-button color="primary">Submit</button>
+    <button mat-raised-button color="primary">Submit</button>   <!-- Submit-Button -->
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="'close'">Close</button>
+  <button mat-button [mat-dialog-close]="'close'">Close</button>    <!-- Schließen-Button -->
 </mat-dialog-actions>

@@ -8,29 +8,30 @@ import { Portfolio } from 'src/app/shared/models/portfolio';
 import { PortfolioService } from 'src/app/shared/services/http/portfolio.service';
 
 @Component({
-  selector: 'app-overview',
+  selector: 'app-overview', // Definiert den Selektor für die Komponente
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
 })
-export class OverviewComponent implements OnInit, OnDestroy {
+export class OverviewComponent implements OnInit, OnDestroy {// Deklariert eine Referenz zum MatPaginator und MatSort
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['wkn', 'purchaseDate', 'quantity', 'price', 'totalPrice', 'action'];
+  displayedColumns: string[] = ['wkn', 'name', 'purchaseDate', 'quantity', 'price', 'totalPrice', 'action'];// Definiert die Spalten, die in der Tabelle angezeigt werden sollen
 
-  resultsLength = 0;
+
+  resultsLength = 0;          // Speichert die Anzahl der Ergebnisse
   isLoadingResults = true;
-  isRateLimitReached = false;
+  isRateLimitReached = false; // Speichert, ob das Rate-Limit erreicht wurde
 
-  public portfolioList: Portfolio[] = [];
-  private toDestroy$: Subject<void> = new Subject<void>();
+  public portfolioList: Portfolio[] = [];         // Speichert die Liste der Portfolios
+  private toDestroy$: Subject<void> = new Subject<void>();    // Speichert ein Subject für die Ereignisbehandlung
 
   constructor(
-    private portfolioService: PortfolioService,
-    private dialog: MatDialog
+    private portfolioService: PortfolioService,   // Injiziert den PortfolioService
+    private dialog: MatDialog   // Injiziert den MatDialog
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {      // Lifecycle-Hook-Methode ngOnInit wird beim Initialisieren der Komponente aufgerufen
     this.portfolioService
       .getPortfolioList()
       .subscribe((response: Portfolio[]) => {
@@ -38,22 +39,21 @@ export class OverviewComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.toDestroy$.next();
+  ngOnDestroy(): void {     // Lifecycle-Hook-Methode ngOnDestroy wird beim Zerstören der Komponente aufgerufen
+    this.toDestroy$.next(); // Sendet ein Ereignis aus, um das Subjekt zu beenden
     this.toDestroy$.complete();
   }
 
-  public add(): void {
+  public add(): void {    // Methode zum Hinzufügen eines neuen Portfolios
     this.portfolioService.addPortfolio().subscribe((response: Portfolio) => {
       this.portfolioList.push(response);
     });
   }
 
-  openDialog(): void {
+  openDialog(): void {    // Methode zum Öffnen des Dialogfensters zum Hinzufügen von Elementen
     const dialogRef = this.dialog.open(AddItemDialogComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      // Handle dialog close event if needed
       console.log(`Dialog result: ${result}`);
     });
   }
