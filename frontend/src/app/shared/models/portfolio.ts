@@ -9,4 +9,9 @@ export interface Portfolio {
   category: string;
   purchaseDate: string;
   totalPrice: number;
+  
+  
+
+
+
 }
