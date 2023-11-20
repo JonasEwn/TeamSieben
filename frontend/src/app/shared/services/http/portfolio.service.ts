@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Portfolio } from '../../models/portfolio';
 import { Observable } from 'rxjs';
 
-// This service is used to get the portfolio list.
-// It is used in the overview.component.ts.
-// It is a standalone service.
+// Deklariert den PortfolioService als Injectable-Service
 @Injectable({
   providedIn: 'root',
 })
@@ -13,13 +11,10 @@ export class PortfolioService {
 
   constructor() {}
 
-  /**
-   * Get portfolio list (from mock).
-   * @returns Observable<Portfolio[]>
-   */
+  
   public getPortfolioList(): Observable<Portfolio[]> {
-    this.generatePortfolioList(); // MOCK
-    return new Observable<Portfolio[]>((subscriber) => {
+    this.generatePortfolioList(); // Generiert die Portfolioliste von einem MOCK
+    return new Observable<Portfolio[]>((subscriber) => { // Erstellt ein neues Observable und sendet die Portfolioliste an den Abonnenten
       subscriber.next(this.portfolioList);
       subscriber.complete();
     });
@@ -27,13 +22,13 @@ export class PortfolioService {
 
   public addPortfolio(): Observable<Portfolio> {
     return new Observable<Portfolio>(() => {
-      // TODO
+      // Erstellt ein neues Observable, das den Klick auf den Button "Add Portfolio" auslöst
       console.log('addPortfolio clicked');
     });
   }
 
 
-  private generatePortfolioList(): void {
+  private generatePortfolioList(): void { // Erzeugt eine Beispiel-Portfolioliste mit mehreren Portfolios
     this.portfolioList = [
       {
         id: 1,
@@ -103,7 +98,7 @@ export class PortfolioService {
       },
     ]; 
     
-    // calculate average price and total price for each WKN
+    // Gruppiert die Portfolios nach WKN und berechnet den Durchschnittspreis und den Gesamtpreis für jede WKN
 const portfolioMap = new Map<string, Portfolio[]>();
 for (const portfolio of this.portfolioList) {
   const portfolioGroup = portfolioMap.get(portfolio.wkn);
