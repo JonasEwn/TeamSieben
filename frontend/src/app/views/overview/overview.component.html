@@ -48,15 +48,14 @@
 
       <!-- Action Column Beispiel -->
       <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <th mat-header-cell *matHeaderCellDef>Details</th>
         <td mat-cell *matCellDef="let row">
           <!-- Hier fügst du den HTML-Code für die Aktion ein -->
           <!-- Beispiel: Ein Button, der eine Methode aufruft -->
-          <button mat-flat-button color="primary" (click)="add()">+</button>
-          <span class="spacer"></span>
-          <button mat-stroked-button color="primary" (click)="openDialog()">
-            + Dialog
-          </button>
+
+          <!--<button mat-flat-button color="primary" (click)="add()">+</button>-->
+          <!--<span class="spacer"></span>-->
+          <button mat-stroked-button color="primary" (click)="openDialog()">Details</button>
         </td>
       </ng-container>
 
