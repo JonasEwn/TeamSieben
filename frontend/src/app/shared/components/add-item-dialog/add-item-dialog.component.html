@@ -3,6 +3,10 @@
 <mat-dialog-content>      <!-- Dialoginhaltmit Eingabefeldern-->
   <form>
     <mat-form-field>
+      <input matInput formControlName="wkn" placeholder="WKN" />
+    </mat-form-field>
+    
+    <mat-form-field>
       <input matInput formControlName="name" placeholder="Name" />
     </mat-form-field>
 
@@ -11,8 +15,25 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="wkn" placeholder="WKN" />
+      <input matInput formControlName="totalPrice" placeholder="Gesampreis" />
     </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="averagePrice" placeholder="Durchschnittspreis" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="quantity" placeholder="Gesamtanzahl" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="category" placeholder="Kategorie" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="description" placeholder="Beschreibung" />
+    </mat-form-field>
+
 
     <button mat-raised-button color="primary">Submit</button>   <!-- Submit-Button -->
   </form>
