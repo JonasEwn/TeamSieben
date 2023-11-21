@@ -34,3 +34,8 @@ th {
 .spacer {
   padding-left: 16px;
 }
+
+.mat-mdc-row:hover {
+  background: lightblue;
+  cursor: pointer;
+}

@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { AddItemDialogComponent } from 'src/app/shared/components/add-item-dialog/add-item-dialog.component';
 import { Portfolio } from 'src/app/shared/models/portfolio';
 import { PortfolioService } from 'src/app/shared/services/http/portfolio.service';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-overview', // Definiert den Selektor für die Komponente
@@ -28,7 +29,9 @@ export class OverviewComponent implements OnInit, OnDestroy {// Deklariert eine 
 
   constructor(
     private portfolioService: PortfolioService,   // Injiziert den PortfolioService
-    private dialog: MatDialog   // Injiziert den MatDialog
+    private dialog: MatDialog,   // Injiziert den MatDialog
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {      // Lifecycle-Hook-Methode ngOnInit wird beim Initialisieren der Komponente aufgerufen
@@ -57,4 +60,9 @@ export class OverviewComponent implements OnInit, OnDestroy {// Deklariert eine 
       console.log(`Dialog result: ${result}`);
     });
   }
+  
+  showDetails(row: any): void {
+    this.router.navigate([row.id + '/detail'], {relativeTo: this.route})
+  }
+
 }

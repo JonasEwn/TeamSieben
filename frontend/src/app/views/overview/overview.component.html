@@ -61,10 +61,10 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>      <!-- Definiert eine Zeile für die Spaltenüberschriften, die von displayedColumns bestimmt werden-->
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> <!-- Definiert eine Datenzeile, die von displayedColumns bestimmt werden-->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)"></tr> <!-- Definiert eine Datenzeile, die von displayedColumns bestimmt werden-->
     </table>
   </div>
-
+  <router-outlet></router-outlet>
   <div class="paginator-container"> <!--Klasse kann verwendet werden, um die Seitenzahlen-Komponente zu stylen-->
     <mat-paginator [length]="resultsLength" [pageSize]="30" aria-label="Select page of products"></mat-paginator>
   </div>
