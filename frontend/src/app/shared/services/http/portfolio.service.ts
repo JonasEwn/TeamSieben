@@ -32,28 +32,29 @@ export class PortfolioService {
     this.portfolioList = [...portfolio]; 
     
     // Gruppiert die Portfolios nach WKN und berechnet den Durchschnittspreis und den Gesamtpreis für jede WKN
-const portfolioMap = new Map<string, Portfolio[]>();
-for (const portfolio of this.portfolioList) {
-  const portfolioGroup = portfolioMap.get(portfolio.wkn);
-  if (portfolioGroup) {
-    portfolioGroup.push(portfolio);
-  } else {
-    portfolioMap.set(portfolio.wkn, [portfolio]);
-  }
-}
+    const portfolioMap = new Map<string, Portfolio[]>();
+    for (const portfolio of this.portfolioList) {
+      const portfolioGroup = portfolioMap.get(portfolio.wkn);
+      if (portfolioGroup) {
+        portfolioGroup.push(portfolio);
 
-for (const [wkn, portfolios] of portfolioMap) {
-  const totalPrice = portfolios.reduce((acc, portfolio) => acc + portfolio.price * portfolio.quantity, 0);
-  const roundedTotalPrice = parseFloat(totalPrice.toFixed(2));
-  const totalQuantity = portfolios.reduce((acc, portfolio) => acc + Number(portfolio.quantity), 0);
-  const averagePrice = totalPrice / totalQuantity;
+      } else {
+        portfolioMap.set(portfolio.wkn, [portfolio]);
+      }
+    }
+    
+    for (const [wkn, portfolios] of portfolioMap) {
+      const totalPrice = portfolios.reduce((acc, portfolio) => acc + portfolio.price * portfolio.quantity, 0);
+      const roundedTotalPrice = parseFloat(totalPrice.toFixed(0));
+      const totalQuantity = portfolios.reduce((acc, portfolio) => acc + Number(portfolio.quantity), 0);
+      const averagePrice = totalPrice / totalQuantity;
 
-  for (const portfolio of portfolios) {
-    portfolio.price = parseFloat(averagePrice.toFixed(2));
-    portfolio.totalPrice = roundedTotalPrice;
-  }
-}
-
-
-  }
-}
+      for (const portfolio of portfolios) {
+        portfolio.averagePrice = parseFloat(averagePrice.toFixed(2));
+        portfolio.totalPrice = roundedTotalPrice;
+      }
+    }
+    
+    
+      }
+    }

@@ -16,7 +16,7 @@ export class OverviewComponent implements OnInit, OnDestroy {// Deklariert eine 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['wkn', 'name', 'purchaseDate', 'quantity', 'price', 'totalPrice', 'action'];// Definiert die Spalten, die in der Tabelle angezeigt werden sollen
+  displayedColumns: string[] = ['wkn', 'name', 'purchaseDate', 'quantity', 'averagePrice', 'totalPrice', 'action'];// Definiert die Spalten, die in der Tabelle angezeigt werden sollen
 
 
   resultsLength = 0;          // Speichert die Anzahl der Ergebnisse
