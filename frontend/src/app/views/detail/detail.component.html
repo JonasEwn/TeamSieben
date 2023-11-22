@@ -1,1 +1,51 @@
-<p>Die ID der gewählten Zeile ist: {{ myId }}</p>
+<mat-toolbar color="primary"> <!-- Definiert eine horizontale Navigationsleiste mit der Farbe "primary"--> 
+    <span class="header-title" [routerLink]="'/overview'">Überblick für WKN {{ wkn }}</span>
+    <span class="spacer"></span>    <!-- Fügt ein leeres Element ein, um Platz zwischen den beiden Bereichen der Navigationsleiste zu schaffen--> 
+  </mat-toolbar>
+
+<div class="table-container">   <!-- Enthält die Tabelle zur Anzeige der Portfolio-Daten-->
+
+
+    <table mat-table [dataSource]="portfolioList" class="table" matSort matSortActive="created" matSortDisableClear   
+      matSortDirection="desc" class="mat-elevation-z8"> <!-- Definiert eine Material Design-Tabelle, deren Datenquelle die portfolioList ist. Mithilfe von MatSort wird die Reihenfolge nach "created" sortiert-->
+  
+      <!-- WKN Column -->
+      <ng-container matColumnDef="wkn">
+        <th mat-header-cell *matHeaderCellDef>WKN</th>
+        <td mat-cell *matCellDef="let row">{{ row.wkn }}</td>
+      </ng-container>
+
+      <!-- PurchaseDate Column -->
+      <ng-container matColumnDef="purchaseDate">
+        <th mat-header-cell *matHeaderCellDef>Kaufdatum</th>
+        <td mat-cell *matCellDef="let row">{{ row.purchaseDate}}</td>
+      </ng-container>
+
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Anzahl</th>
+        <td mat-cell *matCellDef="let row">{{ row.quantity}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      </ng-container>
+
+      <!-- Average Price Column -->
+      <ng-container matColumnDef="averagePrice">
+        <th mat-header-cell *matHeaderCellDef>Durchschnittspreis</th>
+        <td mat-cell *matCellDef="let row">{{ row.averagePrice }}</td>
+      </ng-container>
+
+      <!-- total Price Column -->
+      <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef>Gesamtpreis</th>
+        <td mat-cell *matCellDef="let row">{{ row.totalPrice }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>      <!-- Definiert eine Zeile für die Spaltenüberschriften, die von displayedColumns bestimmt werden-->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> <!-- Definiert eine Datenzeile, die von displayedColumns bestimmt werden-->
+    </table>
+  </div>

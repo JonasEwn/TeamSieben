@@ -54,14 +54,14 @@
           <!-- Beispiel: Ein Button, der eine Methode aufruft 
           <button mat-flat-button color="primary" (click)="add()">+</button>
           <span class="spacer"></span> -->
-          <button mat-stroked-button color="primary" (click)="openDialog()"> 
+          <button mat-stroked-button color="primary" (click)="showDetails(row)"> 
             Details
           </button>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>      <!-- Definiert eine Zeile für die Spaltenüberschriften, die von displayedColumns bestimmt werden-->
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)"></tr> <!-- Definiert eine Datenzeile, die von displayedColumns bestimmt werden-->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> <!-- Definiert eine Datenzeile, die von displayedColumns bestimmt werden-->
     </table>
   </div>
   <router-outlet></router-outlet>

@@ -35,13 +35,10 @@ const routes: Routes = [
   {
     path: 'overview',
     component: OverviewComponent,
-    children: [
-      // Not used, but here for reference
-      {
-        path: ':id/detail',
-        component: DetailComponent,
-      },
-    ],
+  },
+  {
+    path: 'overview/:id/detail',
+    component: DetailComponent,
   },
   {
     path: 'impressum',
