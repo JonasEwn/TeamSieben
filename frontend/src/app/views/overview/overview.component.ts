@@ -53,10 +53,14 @@ export class OverviewComponent implements OnInit, OnDestroy {// Deklariert eine 
     });
   }
 
-  openDialog(row: any): void {    // Methode zum Öffnen des Dialogfensters zum Hinzufügen von Elementen
-    this.router.navigate([row.wkn + '/detail'], {relativeTo: this.route})
+  openDialog(): void {    // Methode zum Öffnen des Dialogfensters zum Hinzufügen von Elementen
+    const dialogRef = this.dialog.open(AddItemDialogComponent);
+
+    //dialogRef.afterClosed().subscribe((result) => {
+      // Handle dialog close event if needed
+      //console.log(Dialog result: ${result});
   }
-  
+
   showDetails(row: any): void {
     this.router.navigate([row.wkn + '/detail'], {relativeTo: this.route})
   }
