@@ -51,8 +51,9 @@ export class AddItemDialogComponent {
   }
 
   onSubmit(){
+    console.warn(this.myForm.value);
     //this.portfolioService.addItem(this.newItem);
-    this.router.navigate(['/overview']);
+    //this.router.navigate(['/overview']);
   }
 
 }

@@ -1,7 +1,7 @@
 <!-- Titel des Dialogs -->
 <h2 mat-dialog-title>My Dialog</h2>
 <mat-dialog-content>      <!-- Dialoginhaltmit Eingabefeldern-->
-  <div [formGroup]="myForm">
+  <form  [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
       <input matInput formControlName="wkn" type="number" placeholder="WKN" id="wkn"/>
     </mat-form-field>
@@ -27,10 +27,8 @@
     </mat-form-field>
 
 
-
-
-    <button mat-raised-button color="primary">Submit</button>   <!-- Submit-Button -->
-  </div>
+    <button mat-raised-button type="submit" color="primary" [disabled]="!myForm.valid">Submit</button>   <!-- Submit-Button -->
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button [mat-dialog-close]="'close'">Close</button>    <!-- Schließen-Button -->
