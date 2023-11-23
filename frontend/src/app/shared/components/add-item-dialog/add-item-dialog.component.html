@@ -3,36 +3,30 @@
 <mat-dialog-content>      <!-- Dialoginhaltmit Eingabefeldern-->
   <form>
     <mat-form-field>
-      <input matInput formControlName="wkn" placeholder="WKN" />
-    </mat-form-field>
-    
-    <mat-form-field>
-      <input matInput formControlName="name" placeholder="Name" />
+      <input matInput formControlName="wkn" type="number" placeholder="WKN" id="wkn"/>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="price" placeholder="Price" />
+      <input matInput formControlName="name" type="text" placeholder="Name" id="name" required/>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="totalPrice" placeholder="Gesampreis" />
+      <input matInput formControlName="category" type="text" placeholder="Kategorie" id="category"/>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="averagePrice" placeholder="Durchschnittspreis" />
+      <input matInput formControlName="price" type="number" step="0.5" placeholder="Price" id="price"/>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="quantity" placeholder="Gesamtanzahl" />
+      <input matInput formControlName="quantity" type="number" placeholder="Anzahl" id="quantity"/>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="category" placeholder="Kategorie" />
+      <input matInput formControlName="description" type="text" placeholder="Beschreibung" id="description"/>
     </mat-form-field>
 
-    <mat-form-field>
-      <input matInput formControlName="description" placeholder="Beschreibung" />
-    </mat-form-field>
+
 
 
     <button mat-raised-button color="primary">Submit</button>   <!-- Submit-Button -->

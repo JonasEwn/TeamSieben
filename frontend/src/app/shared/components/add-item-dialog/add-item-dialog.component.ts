@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import {Portfolio} from "../../models/portfolio";
+import {PortfolioService} from "../../services/http/portfolio.service";
+import {Router} from "@angular/router";
 
 
 
@@ -21,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './add-item-dialog.component.html',
   styleUrl: './add-item-dialog.component.scss',
@@ -28,18 +32,15 @@ import { MatInputModule } from '@angular/material/input';
 export class AddItemDialogComponent {
   public myForm: FormGroup;
 
-
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private portfolioService: PortfolioService, private router: Router) {
     this.myForm = this.fb.group({
-      name: ['', Validators.required],
-      price: ['', Validators.required],
-      wkn: ['', [Validators.required]],
-      quantity: ['', Validators.required],
-      category: ['', Validators.required],
-      description: ['', Validators.required]
+      newItem: this.fb.array([])
     });
   }
 
+  onSubmit(){
+    //this.portfolioService.addItem(this.newItem);
+    this.router.navigate(['/overview']);
+  }
 
-  
 }
