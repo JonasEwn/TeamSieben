@@ -47,10 +47,11 @@ export class PortfolioService {
       const averagePrice = totalPrice / totalQuantity;
 
       for (const portfolio of portfolios) {
+        const rowPrice =  portfolio.price * portfolio.quantity;
+        portfolio.rowPrice = rowPrice;
         portfolio.averagePrice = parseFloat(averagePrice.toFixed(2));
         portfolio.totalPrice = roundedTotalPrice;
         portfolio.totalQuantity = totalQuantity;
-        
       }
     }
       }
