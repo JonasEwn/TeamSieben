@@ -10,6 +10,7 @@ export interface Portfolio {
   purchaseDate: string;
   totalPrice: number;
   averagePrice: number;
+  totalQuantity: number;
 }
   export const portfolio = [
   {
@@ -22,7 +23,9 @@ export interface Portfolio {
     category: 'Aktie',
     purchaseDate: '01.11.2023',
     totalPrice: 0,
-    averagePrice:0
+    averagePrice:0,
+    totalQuantity: 0
+
   },
   {
     id: 2,
@@ -34,7 +37,8 @@ export interface Portfolio {
     category: 'Aktie',
     purchaseDate: '02.11.2023',
     totalPrice: 0,
-    averagePrice:0
+    averagePrice:0,
+    totalQuantity: 0
   },
   {
     id: 3,
@@ -46,7 +50,8 @@ export interface Portfolio {
     category: 'Aktie',
     purchaseDate: '02.11.2023',
     totalPrice: 0,
-    averagePrice:0
+    averagePrice:0,
+    totalQuantity: 0
   },
   {
     id: 4,
@@ -58,7 +63,8 @@ export interface Portfolio {
     category: 'Aktie',
     purchaseDate: '02.11.2023',
     totalPrice: 0,
-    averagePrice:0
+    averagePrice:0,
+    totalQuantity: 0
   },
   {
     id: 5,
@@ -70,7 +76,8 @@ export interface Portfolio {
     category: 'Aktie',
     purchaseDate: '03.11.2023',
     totalPrice: 0,
-    averagePrice:0
+    averagePrice:0,
+    totalQuantity: 0
   },
   {
     id: 6,
@@ -82,7 +89,8 @@ export interface Portfolio {
     category: 'Crypto',
     purchaseDate: '03.11.2023',
     totalPrice: 0,
-    averagePrice:0
+    averagePrice:0,
+    totalQuantity: 0
   },
 
   ];

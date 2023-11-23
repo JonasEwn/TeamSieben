@@ -7,12 +7,12 @@
   <div class="info-container">
     <div class="box">
       <p>WKN: {{wkn}}</p>
-      <p>Name: {{array[0]}}</p>
+      <p>Name: {{portfolioList[0].name}}</p>
       <p>Kategorie: {{portfolioList[0].category}}</p>
     </div>
     <div class="box">
-      <p>Gesamtzahl:</p>
-      <p>Kaufpreis:</p>
+      <p>Gesamtzahl:{{portfolioList[0].totalQuantity}}<p>
+      <p>Kaufpreis:{{portfolioList[0].averagePrice}}</p>
       <p>Beschreibung: {{portfolioList[0].description}}</p>
     </div>
   </div>
@@ -47,9 +47,9 @@
         </ng-container>
 
         <!-- Average Price Column -->
-        <ng-container matColumnDef="averagePrice">
-          <th mat-header-cell *matHeaderCellDef>Durchschnittspreis</th>
-          <td mat-cell *matCellDef="let row">{{ row.averagePrice }}</td>
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>Kaufpreis</th>
+          <td mat-cell *matCellDef="let row">{{ row.price }}</td>
         </ng-container>
 
         <!-- total Price Column -->

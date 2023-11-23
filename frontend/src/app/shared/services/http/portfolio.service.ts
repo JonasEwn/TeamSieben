@@ -9,9 +9,6 @@ import { Observable } from 'rxjs';
 export class PortfolioService {
   portfolioList: Portfolio[] = [];
 
-  constructor() {}
-
-  
   public getPortfolioList(): Observable<Portfolio[]> {
     this.generatePortfolioList(); // Generiert die Portfolioliste von einem MOCK
     return new Observable<Portfolio[]>((subscriber) => { // Erstellt ein neues Observable und sendet die Portfolioliste an den Abonnenten
@@ -27,13 +24,6 @@ export class PortfolioService {
     });
   }
 
-  public filterPortfolioByWkn(): Observable<Portfolio[]> {
-    this.generatePortfolioList(); // Generiert die Portfolioliste von einem MOCK
-    return new Observable<Portfolio[]>((subscriber) => { // Erstellt ein neues Observable und sendet die Portfolioliste an den Abonnenten
-      subscriber.next(this.portfolioList);
-      subscriber.complete();
-    });
-  }
 
   private generatePortfolioList(): void { // Erzeugt eine Beispiel-Portfolioliste mit mehreren Portfolios
     this.portfolioList = [...portfolio]; 
@@ -59,9 +49,9 @@ export class PortfolioService {
       for (const portfolio of portfolios) {
         portfolio.averagePrice = parseFloat(averagePrice.toFixed(2));
         portfolio.totalPrice = roundedTotalPrice;
+        portfolio.totalQuantity = totalQuantity;
+        
       }
     }
-    
-    
       }
     }
