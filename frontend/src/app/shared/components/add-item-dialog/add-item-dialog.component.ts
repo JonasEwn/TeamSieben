@@ -46,7 +46,7 @@ export class AddItemDialogComponent {
       name: ['', Validators.required],
       description: ['', Validators.required],
       quantity: ['', Validators.required],
-      price: [0, Validators.required],
+      price: ['', Validators.required],
       category: ['', Validators.required],
     });
   }

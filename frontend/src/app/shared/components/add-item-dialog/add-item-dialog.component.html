@@ -1,5 +1,5 @@
 <!-- Titel des Dialogs -->
-<h2 mat-dialog-title>My Dialog</h2>
+<h2 mat-dialog-title>Neuen Kauf hinzufügen</h2>
 <mat-dialog-content>      <!-- Dialoginhaltmit Eingabefeldern-->
   <form  [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
@@ -27,9 +27,9 @@
     </mat-form-field>
 
 
-    <button mat-raised-button type="submit" color="primary" [disabled]="!myForm.valid">Submit</button>   <!-- Submit-Button -->
+    <button mat-raised-button type="submit" color="primary" [disabled]="!myForm.valid">Speichern</button>   <!-- Submit-Button -->
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="'close'">Close</button>    <!-- Schließen-Button -->
+  <button mat-button [mat-dialog-close]="'close'">Schließen</button>    <!-- Schließen-Button -->
 </mat-dialog-actions>
