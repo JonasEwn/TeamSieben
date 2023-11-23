@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PortfolioService {
-  portfolioList: Portfolio[] = [];
-  portfolioCategoriesList: PortfolioCategories[] = []
+  portfolioList: Portfolio[] = portfolio;
+  portfolioCategoriesList: PortfolioCategories[] = portfolioCategories
 
   public getPortfolioList(): Observable<Portfolio[]> {
     this.generatePortfolioList(); // Generiert die Portfolioliste von einem MOCK
@@ -25,6 +25,7 @@ export class PortfolioService {
       subscriber.complete();
     });
   }
+  ngOnInit() {}
 
   public addItem(item: Portfolio): void {
     console.log(item);
@@ -32,6 +33,13 @@ export class PortfolioService {
     this.generatePortfolioList();
     console.log(this.portfolioList);
 
+  }
+
+  public addCategoryItem(item: PortfolioCategories): void {
+    console.log(item);
+    this.portfolioCategoriesList.push(item);
+    this.generatePortfolioList();
+    console.log(this.portfolioCategoriesList);
   }
 
   public addPortfolio(): Observable<Portfolio> {
@@ -50,10 +58,8 @@ export class PortfolioService {
     return maxId + 1; // größte gefundene ID plus 1
   }
 
-  private generatePortfolioList(): void { // Erzeugt eine Beispiel-Portfolioliste mit mehreren Portfolios
-    this.portfolioList = [...portfolio]; 
-    this.portfolioCategoriesList = [...portfolioCategories];
-    
+  public generatePortfolioList(): void { // Erzeugt eine Beispiel-Portfolioliste mit mehreren Portfolios
+
     // Gruppiert die Portfolios nach WKN und berechnet den Durchschnittspreis und den Gesamtpreis für jede WKN
     const portfolioMap = new Map<string, Portfolio[]>();
     for (const portfolio of this.portfolioList) {

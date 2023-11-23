@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import {Portfolio} from "../../models/portfolio";
 import {PortfolioService} from "../../services/http/portfolio.service";
 import {Router} from "@angular/router";
+import { PortfolioCategories } from '../../models/portfolioCategories';
 
 
 
@@ -53,7 +54,7 @@ export class AddItemDialogComponent {
   onSubmit(){
     console.warn(this.myForm.value);
     let p: Portfolio = {
-      id: 123,
+      id: this.portfolioService.getNextId(),
       wkn: this.myForm.value.wkn,
       name: this.myForm.value.name,
       price: this.myForm.value.price,
@@ -68,6 +69,18 @@ export class AddItemDialogComponent {
     };
     console.warn(p);
     this.portfolioService.addItem(p);
+
+    let c: PortfolioCategories = {
+      wkn: this.myForm.value.wkn,
+      name: this.myForm.value.name,
+      description: this.myForm.value.description,
+      category: this.myForm.value.category,
+      totalPrice: 0, 
+      averagePrice: 0, 
+      totalQuantity: 0, 
+    };
+    this.portfolioService.addCategoryItem(c);
+    this.portfolioService.generatePortfolioList;
     //this.portfolioService.addItem(this.newItem);
     //this.router.navigate(['/overview']);
   }
