@@ -12,7 +12,7 @@
     </div>
     <div class="box">
       <p>Gesamtzahl: {{portfolioList[0].totalQuantity}}<p>
-      <p>Kaufpreis: {{portfolioList[0].averagePrice}}</p>
+      <p>Kaufpreis: {{portfolioList[0].averagePrice}} Euro </p>
       <p>Beschreibung: {{portfolioList[0].description}}</p>
     </div>
   </div>
@@ -49,13 +49,13 @@
         <!-- Average Price Column -->
         <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef>Kaufpreis</th>
-          <td mat-cell *matCellDef="let row">{{ row.price }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.price }} Euro </td>
         </ng-container>
 
         <!-- total Price Column -->
-        <ng-container matColumnDef="totalPrice">
+        <ng-container matColumnDef="rowPrice">
           <th mat-header-cell *matHeaderCellDef>Gesamtpreis</th>
-          <td mat-cell *matCellDef="let row">{{ row.totalPrice }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.rowPrice }} EUR </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>      <!-- Definiert eine Zeile für die Spaltenüberschriften, die von displayedColumns bestimmt werden-->

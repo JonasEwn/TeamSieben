@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { Subject } from 'rxjs';
 import { AddItemDialogComponent } from 'src/app/shared/components/add-item-dialog/add-item-dialog.component';
 import { Portfolio } from 'src/app/shared/models/portfolio';
+import { PortfolioCategories } from 'src/app/shared/models/portfolioCategories';
 import { PortfolioService } from 'src/app/shared/services/http/portfolio.service';
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -17,7 +18,7 @@ export class OverviewComponent implements OnInit, OnDestroy {// Deklariert eine 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['wkn', 'name', 'purchaseDate', 'quantity', 'averagePrice', 'totalPrice', 'action'];// Definiert die Spalten, die in der Tabelle angezeigt werden sollen
+  displayedColumns: string[] = ['wkn', 'name', 'totalQuantity', 'averagePrice', 'totalPrice', 'action'];// Definiert die Spalten, die in der Tabelle angezeigt werden sollen
 
 
   resultsLength = 0;          // Speichert die Anzahl der Ergebnisse
@@ -25,6 +26,7 @@ export class OverviewComponent implements OnInit, OnDestroy {// Deklariert eine 
   isRateLimitReached = false; // Speichert, ob das Rate-Limit erreicht wurde
 
   public portfolioList: Portfolio[] = [];         // Speichert die Liste der Portfolios
+  public portfolioCategoriesList: PortfolioCategories [] = [];
   private toDestroy$: Subject<void> = new Subject<void>();    // Speichert ein Subject für die Ereignisbehandlung
 
   constructor(
@@ -40,6 +42,11 @@ export class OverviewComponent implements OnInit, OnDestroy {// Deklariert eine 
       .subscribe((response: Portfolio[]) => {
         this.portfolioList = response;
       });
+    this.portfolioService
+      .getPortfolioCategorieList()
+      .subscribe((response: PortfolioCategories[]) => {
+        this.portfolioCategoriesList = response;
+      });
   }
 
   ngOnDestroy(): void {     // Lifecycle-Hook-Methode ngOnDestroy wird beim Zerstören der Komponente aufgerufen
@@ -50,6 +57,9 @@ export class OverviewComponent implements OnInit, OnDestroy {// Deklariert eine 
   public add(): void {    // Methode zum Hinzufügen eines neuen Portfolios
     this.portfolioService.addPortfolio().subscribe((response: Portfolio) => {
       this.portfolioList.push(response);
+    });
+    this.portfolioService.addPortfolio().subscribe((response: PortfolioCategories) => {
+      this.portfolioCategoriesList.push(response);
     });
   }
 

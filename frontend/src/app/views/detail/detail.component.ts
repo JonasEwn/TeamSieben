@@ -15,7 +15,7 @@ export class DetailComponent {
 
   public portfolioList: Portfolio[] = [];// Speichert die Liste der Portfolios
 
-  displayedColumns: string[] = ['wkn', 'purchaseDate', 'quantity', 'price', 'totalPrice'];// Definiert die Spalten, die in der Tabelle angezeigt werden sollen
+  displayedColumns: string[] = ['wkn', 'purchaseDate', 'quantity', 'price', 'rowPrice'];// Definiert die Spalten, die in der Tabelle angezeigt werden sollen
 
 
   constructor(
