@@ -26,6 +26,14 @@ export class PortfolioService {
     });
   }
 
+  public addItem(item: Portfolio): void {
+    console.log(item);
+    this.portfolioList.push(item);
+    this.generatePortfolioList();
+    console.log(this.portfolioList);
+
+  }
+
   public addPortfolio(): Observable<Portfolio> {
     return new Observable<Portfolio>(() => {
        //Erstellt ein neues Observable, das den Klick auf den Button "Add Portfolio" auslöst
@@ -41,7 +49,7 @@ export class PortfolioService {
     const maxId = Math.max(...this.portfolioList.map(item => item.id), 0); //Sucht den größten Wert der vorhanden Ids (falls keine IDs, dann 0 zurück)
     return maxId + 1; // größte gefundene ID plus 1
   }
-  
+
   private generatePortfolioList(): void { // Erzeugt eine Beispiel-Portfolioliste mit mehreren Portfolios
     this.portfolioList = [...portfolio]; 
     this.portfolioCategoriesList = [...portfolioCategories];

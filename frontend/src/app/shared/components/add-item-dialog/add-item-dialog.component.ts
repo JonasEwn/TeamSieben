@@ -52,6 +52,22 @@ export class AddItemDialogComponent {
 
   onSubmit(){
     console.warn(this.myForm.value);
+    let p: Portfolio = {
+      id: 123,
+      wkn: this.myForm.value.wkn,
+      name: this.myForm.value.name,
+      price: this.myForm.value.price,
+      quantity: this.myForm.value.quantity,
+      description: this.myForm.value.description,
+      category: this.myForm.value.category,
+      purchaseDate: "23.11.2023", 
+      totalPrice: 0, 
+      averagePrice: 0, 
+      totalQuantity: 0, 
+      rowPrice: 0
+    };
+    console.warn(p);
+    this.portfolioService.addItem(p);
     //this.portfolioService.addItem(this.newItem);
     //this.router.navigate(['/overview']);
   }
