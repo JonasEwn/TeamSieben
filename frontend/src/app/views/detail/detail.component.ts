@@ -26,7 +26,7 @@ export class DetailComponent {
     this.portfolioService
       .getPortfolioList()
       .subscribe((response: Portfolio[]) => {
-        this.portfolioList = response;
+        this.portfolioList = response.filter(item => item.wkn === this.wkn);;
       });
   }
 }
