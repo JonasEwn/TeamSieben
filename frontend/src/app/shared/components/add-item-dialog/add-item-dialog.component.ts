@@ -45,7 +45,7 @@ export class AddItemDialogComponent {
       wkn: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      quantity: [0, Validators.required],
+      quantity: ['', Validators.required],
       price: [0, Validators.required],
       category: ['', Validators.required],
     });
