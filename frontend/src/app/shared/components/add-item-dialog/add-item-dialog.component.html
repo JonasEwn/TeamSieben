@@ -1,35 +1,41 @@
-<!-- Titel des Dialogs -->
-<h2 mat-dialog-title>My Dialog</h2>
-<mat-dialog-content>      <!-- Dialoginhaltmit Eingabefeldern-->
-  <form  [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-      <input matInput formControlName="wkn" type="number" placeholder="WKN" id="wkn"/>
-    </mat-form-field>
+<h2 mat-dialog-title>Neuer Kauf hinzufügen</h2>
+<mat-dialog-content>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div style="display: flex; flex-wrap: wrap;">
+      <!-- Erste Reihe -->
+      <div style="width: 50%; display: flex; flex-direction: column;">
+        <mat-form-field>
+          <input matInput formControlName="wkn" type="number" placeholder="WKN" id="wkn"/>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input matInput formControlName="name" type="text" placeholder="Name" id="name" required/>
-    </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="name" type="text" placeholder="Name" id="name" required/>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input matInput formControlName="category" type="text" placeholder="Kategorie" id="category"/>
-    </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="category" type="text" placeholder="Kategorie" id="category"/>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input matInput formControlName="price" type="number" step="0.5" placeholder="Price" id="price"/>
-    </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="price" type="number" step="0.5" placeholder="Price" id="price"/>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input matInput formControlName="quantity" type="number" placeholder="Anzahl" id="quantity"/>
-    </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="quantity" type="number" placeholder="Anzahl" id="quantity"/>
+        </mat-form-field>
+      </div>
 
-    <mat-form-field>
-      <input matInput formControlName="description" type="text" placeholder="Beschreibung" id="description"/>
-    </mat-form-field>
+      <!-- Zweite Reihe -->
+      <div style="width: 50%; display: flex; flex-direction: column;">
+        <mat-form-field>
+          <input matInput formControlName="description" type="text" placeholder="Beschreibung" id="description"/>
+        </mat-form-field>
+      </div>
+    </div>
 
-
-    <button mat-raised-button type="submit" color="primary" [disabled]="!myForm.valid">Submit</button>   <!-- Submit-Button -->
+    <button mat-raised-button type="submit" color="primary" [disabled]="!myForm.valid">Speichern</button>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="'close'">Close</button>    <!-- Schließen-Button -->
+  <button mat-button [mat-dialog-close]="'close'">Close</button>
 </mat-dialog-actions>
