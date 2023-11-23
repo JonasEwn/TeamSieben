@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Portfolio, portfolio } from '../../models/portfolio';
+import { PortfolioCategories, portfolioCategories } from '../../models/portfolioCategories';
 import { Observable } from 'rxjs';
 
 // Deklariert den PortfolioService als Injectable-Service
@@ -8,11 +9,19 @@ import { Observable } from 'rxjs';
 })
 export class PortfolioService {
   portfolioList: Portfolio[] = [];
+  portfolioCategoriesList: PortfolioCategories[] = []
 
   public getPortfolioList(): Observable<Portfolio[]> {
     this.generatePortfolioList(); // Generiert die Portfolioliste von einem MOCK
     return new Observable<Portfolio[]>((subscriber) => { // Erstellt ein neues Observable und sendet die Portfolioliste an den Abonnenten
       subscriber.next(this.portfolioList);
+      subscriber.complete();
+    });
+  }
+  public getPortfolioCategorieList(): Observable<PortfolioCategories[]> {
+    this.generatePortfolioList(); // Generiert die Portfolioliste von einem MOCK
+    return new Observable<PortfolioCategories[]>((subscriber) => { // Erstellt ein neues Observable und sendet die Portfolioliste an den Abonnenten
+      subscriber.next(this.portfolioCategoriesList);
       subscriber.complete();
     });
   }
@@ -24,9 +33,14 @@ export class PortfolioService {
     });
   }
 
+  private generatePortfolioCategoriesList(): void { // Erzeugt eine Beispiel-Portfolioliste mit mehreren Portfolios
+    this.portfolioCategoriesList = [...portfolioCategories];
+  }
+
 
   private generatePortfolioList(): void { // Erzeugt eine Beispiel-Portfolioliste mit mehreren Portfolios
     this.portfolioList = [...portfolio]; 
+    this.portfolioCategoriesList = [...portfolioCategories];
     
     // Gruppiert die Portfolios nach WKN und berechnet den Durchschnittspreis und den Gesamtpreis für jede WKN
     const portfolioMap = new Map<string, Portfolio[]>();
@@ -52,7 +66,17 @@ export class PortfolioService {
         portfolio.averagePrice = parseFloat(averagePrice.toFixed(2));
         portfolio.totalPrice = roundedTotalPrice;
         portfolio.totalQuantity = totalQuantity;
+
+        const categoryIndex = this.portfolioCategoriesList.findIndex(category => category.wkn === wkn);
+
+        if (categoryIndex !== -1) {
+          this.portfolioCategoriesList[categoryIndex].averagePrice = parseFloat(averagePrice.toFixed(2));
+          this.portfolioCategoriesList[categoryIndex].totalPrice = roundedTotalPrice;
+          this.portfolioCategoriesList[categoryIndex].totalQuantity = totalQuantity;
+    
       }
+      
     }
       }
     }
+}
