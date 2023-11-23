@@ -84,5 +84,5 @@ export interface Portfolio {
     totalPrice: 0,
     averagePrice:0
   },
-  
+
   ];

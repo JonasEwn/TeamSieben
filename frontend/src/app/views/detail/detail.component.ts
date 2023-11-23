@@ -9,11 +9,13 @@ import { PortfolioService } from 'src/app/shared/services/http/portfolio.service
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent {
-  public wkn: string = "";
+  public wkn: string = '';
+  public array: any[] = [];
 
-  public portfolioList: Portfolio[] = [];         // Speichert die Liste der Portfolios
+  public portfolioList: Portfolio[] = [];// Speichert die Liste der Portfolios
 
   displayedColumns: string[] = ['wkn', 'purchaseDate', 'quantity', 'averagePrice', 'totalPrice'];// Definiert die Spalten, die in der Tabelle angezeigt werden sollen
+
 
   constructor(
       private portfolioService: PortfolioService,   // Injiziert den PortfolioService
@@ -29,4 +31,14 @@ export class DetailComponent {
         this.portfolioList = response;
       });
   }
+
+  newArray(): any[]{
+    for (let i = 0; i <this.portfolioList.length; i++){
+      if(this.portfolioList[i].wkn === this.wkn){
+        this.array.push(this.portfolioList[i]);
+      }
+    }
+    return this.array;
+  }
+  protected readonly name = name;
 }
