@@ -37,7 +37,11 @@ export class PortfolioService {
     this.portfolioCategoriesList = [...portfolioCategories];
   }
 
-
+  public getNextId(): number {
+    const maxId = Math.max(...this.portfolioList.map(item => item.id), 0); //Sucht den größten Wert der vorhanden Ids (falls keine IDs, dann 0 zurück)
+    return maxId + 1; // größte gefundene ID plus 1
+  }
+  
   private generatePortfolioList(): void { // Erzeugt eine Beispiel-Portfolioliste mit mehreren Portfolios
     this.portfolioList = [...portfolio]; 
     this.portfolioCategoriesList = [...portfolioCategories];

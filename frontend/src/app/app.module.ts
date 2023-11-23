@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AddItemDialogComponent } from './shared/components/add-item-dialog/add-item-dialog.component';
 import { HomeComponent } from './views/components/home/home.component';
 import {MatSortModule} from "@angular/material/sort";
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 // This module is more or less the core-module of the application.
 // In this case such a module is needed to declare the used components and all relevant modules at once.
@@ -39,7 +40,10 @@ import {MatSortModule} from "@angular/material/sort";
     AddItemDialogComponent,
     MatSortModule,
   ],
-  providers: [],
+  providers: [
+    provideAnimations()
+    
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -36,6 +36,18 @@ export class AddItemDialogComponent {
     this.myForm = this.fb.group({
       newItem: this.fb.array([])
     });
+    this.initForm();
+  }
+
+  initForm(): void{
+    this.myForm = this.fb.group({
+      wkn: ['', Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      quantity: [0, Validators.required],
+      price: [0, Validators.required],
+      category: ['', Validators.required],
+    });
   }
 
   onSubmit(){
