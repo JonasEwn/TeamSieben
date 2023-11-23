@@ -13,6 +13,10 @@ export interface Portfolio {
   totalQuantity: number;
   rowPrice: number;
 }
+
+export interface ItemGroup{
+  items: Portfolio[];
+}
   export const portfolio = [
   {
     id: 1,
