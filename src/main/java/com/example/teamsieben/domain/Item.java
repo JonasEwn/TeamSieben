@@ -4,37 +4,42 @@ Stellt Datenbank-Entitätsobjekte dar
 
 package com.example.teamsieben.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "portfolio_item")
-public class PortfolioItem {
+@Table(name = "item")
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String wkn;
-    private String name;
     private double purchasePrice;
     private int quantity;
-    private String description;
-    private String category;
+
     @Column
     @Temporal(TemporalType.DATE)
     private Date purchaseDate;
 
-    public PortfolioItem() {
-        // Standardkonstruktor
+    // Many To One Test
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_wkn")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Company company;*/
+    // Ende Many To One Test
+
+    public Item() {
     }
 
-    public PortfolioItem(String wkn, String name, double purchasePrice, int quantity, String description, String category, Date purchaseDate) {
+    public Item(String wkn, double purchasePrice, int quantity, Date purchaseDate) {
         this.wkn = wkn;
-        this.name = name;
         this.purchasePrice = purchasePrice;
         this.quantity = quantity;
-        this.description = description;
-        this.category = category;
         this.purchaseDate = purchaseDate;
     }
 
@@ -51,13 +56,6 @@ public class PortfolioItem {
         this.wkn = wkn;
     }
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getPurchasePrice() {
         return purchasePrice;
     }
@@ -71,16 +69,6 @@ public class PortfolioItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public String getDescription() {
-        return description;}
-    public void setDescription(String description) {
-        this.description = description;}
-
-    public String getCategory() {
-        return category;}
-    public void setCategory(String category) {
-        this.category = category;}
 
     public Date getPurchaseDate() {
         return purchaseDate;}

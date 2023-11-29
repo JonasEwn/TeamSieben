@@ -15,6 +15,7 @@ import { AddItemDialogComponent } from './shared/components/add-item-dialog/add-
 import { HomeComponent } from './views/components/home/home.component';
 import {MatSortModule} from "@angular/material/sort";
 import { provideAnimations } from '@angular/platform-browser/animations';
+import {HttpClientModule} from "@angular/common/http";
 
 // This module is more or less the core-module of the application.
 // In this case such a module is needed to declare the used components and all relevant modules at once.
@@ -39,11 +40,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
     MatButtonModule,
     AddItemDialogComponent,
     MatSortModule,
+    HttpClientModule
   ],
-  providers: [
-    provideAnimations()
-    
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

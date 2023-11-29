@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Neuer Kauf hinzufügen</h2>
 <mat-dialog-content>
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <form>
     <div style="display: flex; flex-wrap: wrap;">
       <!-- Erste Reihe -->
       <div style="width: 50%; display: flex; flex-direction: column;">
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <button mat-raised-button type="submit" color="primary" [disabled]="!myForm.valid">Speichern</button>
+    <button mat-raised-button type="submit" color="primary">Speichern</button>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>

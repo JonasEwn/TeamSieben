@@ -9,7 +9,7 @@ import { MenuBarItem } from './shared/components/menu-bar/menu-bar.interfaces';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'My Portfolio';
+  title = 'My PortfolioItems';
 
   public menuItems: MenuBarItem[] = [
     {

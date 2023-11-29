@@ -1,4 +1,4 @@
-Diese Readme-Datei enthält Informationen zur Verwendung unserer Trading-Webseite mit eigenem Portfolio. Die Webseite bietet die folgenden Funktionen:
+Diese Readme-Datei enthält Informationen zur Verwendung unserer Trading-Webseite mit eigenem PortfolioItems. Die Webseite bietet die folgenden Funktionen:
 
 - Geld einzahlen/abheben
 - Limit festlegen
