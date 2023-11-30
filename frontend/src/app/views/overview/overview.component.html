@@ -4,7 +4,7 @@
 
 <div class="container">
   <div class="table-container">
-    <table mat-table [dataSource]="companies" class="table" matSort matSortActive="created"
+    <table mat-table [dataSource]="all" class="table" matSort matSortActive="created"
       matSortDisableClear matSortDirection="desc" class="mat-elevation-z8">
 
 
@@ -19,19 +19,14 @@
       </ng-container>
 
       <!-- Price Column -->
-      <ng-container matColumnDef="quantity">
-        <th mat-header-cell *matHeaderCellDef>Anzahl</th>
-        <td mat-cell *matCellDef="let row">{{ row.quantity }}</td>
-      </ng-container>
-
       <ng-container matColumnDef="average">
         <th mat-header-cell *matHeaderCellDef>Durchschnittspreis</th>
-        <td mat-cell *matCellDef="let row">{{ row.quantity }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.average }}</td>
       </ng-container>
 
       <ng-container matColumnDef="total">
-        <th mat-header-cell *matHeaderCellDef>Gesamtpresi</th>
-        <td mat-cell *matCellDef="let row">{{ row.quantity }}</td>
+        <th mat-header-cell *matHeaderCellDef>Gesamtpreis</th>
+        <td mat-cell *matCellDef="let row">{{ row.total }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

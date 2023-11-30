@@ -3,6 +3,8 @@ import {PortfolioItemsService} from "../../shared/services/http/portfolioItems.s
 import {PortfolioItems} from "../../shared/models/portfolioItems";
 import {PortfolioCompanies} from "../../shared/models/portfolioCompanies";
 import {PortfolioCompaniesService} from "../../shared/services/http/portfolioCompanies.service";
+import {AllCompanies} from "../../shared/models/allCompanies";
+import {AllCompaniesService} from "../../shared/services/http/allCompanies.service";
 
 @Component({
   selector: 'app-overview', // Definiert den Selektor für die Komponente
@@ -13,9 +15,11 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
 
   items: PortfolioItems[] = [];
   companies: PortfolioCompanies[] = [];
-  displayedColumns: string[] = ['wkn', 'name', 'quantity'];
+  all: AllCompanies[] = [];
+  displayedColumns: string[] = ['wkn', 'name', 'average', 'total'];
   constructor(private portfolioItemsService: PortfolioItemsService,
-              private portfolioCompaniesService: PortfolioCompaniesService) {
+              private portfolioCompaniesService: PortfolioCompaniesService,
+              private allCompaniesService: AllCompaniesService) {
   }
 
   ngOnInit(): void {
@@ -25,6 +29,10 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
 
     this.portfolioCompaniesService.getCompaniesData().subscribe(data =>{
       this.companies = data
+    });
+
+    this.allCompaniesService.getData().subscribe(data =>{
+      this.all = data
     });
   }
 }

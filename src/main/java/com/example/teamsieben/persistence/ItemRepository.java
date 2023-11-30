@@ -22,8 +22,8 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query("SELECT (CAST(i.quantity AS DOUBLE)) * i.purchasePrice FROM Item i WHERE i.wkn = ?1")
     Iterable<Double> allAmounts(String wkn);
 
-    @Query("SELECT c.name AS name, i.wkn as wkn, AVG(i.purchasePrice) AS average, SUM(i.quantity * i.purchasePrice) AS total FROM Item i JOIN Company c ON c.wkn = i.wkn WHERE i.wkn = ?1 GROUP BY i.wkn")
-    Iterable<ItemProjection> allPricesAndAmounts(String wkn);
+    @Query("SELECT c.name AS name, i.wkn as wkn, AVG(i.purchasePrice) AS average, SUM(i.quantity * i.purchasePrice) AS total FROM Item i JOIN Company c ON c.wkn = i.wkn GROUP BY i.wkn")
+    Iterable<ItemProjection> allPricesAndAmounts();
     //----------------------------------------------------
     /*
     SELECT item.wkn, company.name, sum(item.quantity) as quantity, sum(CAST(item.quantity AS DOUBLE) * item.purchase_Price) AS total

@@ -78,8 +78,8 @@ public class ItemService {
         return total;
     }
 
-    public Iterable<ItemProjection> allOutput(String wkn){
-        Iterable<ItemProjection> all = itemRepository.allPricesAndAmounts(wkn);
+    public Iterable<ItemProjection> allOutput(){
+        Iterable<ItemProjection> all = itemRepository.allPricesAndAmounts();
         return all;
     }
 

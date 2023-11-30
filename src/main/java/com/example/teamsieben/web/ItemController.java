@@ -67,9 +67,9 @@ public class ItemController {
         return new ResponseEntity<Double>(total, HttpStatus.OK);
     }
 
-    @GetMapping("/all/{wkn}")
-    public ResponseEntity<Iterable<ItemProjection>> allOutput(@PathVariable String wkn){
-        Iterable<ItemProjection> total = itemService.allOutput(wkn);
+    @GetMapping("/all")
+    public ResponseEntity<Iterable<ItemProjection>> allOutput(){
+        Iterable<ItemProjection> total = itemService.allOutput();
         return new ResponseEntity<>(total, HttpStatus.OK);
     }
     //------------------------------------------
