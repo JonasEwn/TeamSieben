@@ -1,1 +1,39 @@
-<p>Detail Seite läuft!</p>
+<div class="container">
+  <div class="table-container">
+    <table mat-table [dataSource]="items" class="table" matSort matSortActive="created"
+           matSortDisableClear matSortDirection="desc" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="wkn">
+        <th mat-header-cell *matHeaderCellDef>WKN</th>
+        <td mat-cell *matCellDef="let row">{{ row.wkn }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="purchaseDate">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let row">{{ row.purchaseDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Anzahl</th>
+        <td mat-cell *matCellDef="let row">{{ row.quantity }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="purchasePrice">
+        <th mat-header-cell *matHeaderCellDef>Preis</th>
+        <td mat-cell *matCellDef="let row">{{ row.purchasePrice }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <div class="paginator-container">
+    <mat-paginator></mat-paginator>
+  </div>
+</div>

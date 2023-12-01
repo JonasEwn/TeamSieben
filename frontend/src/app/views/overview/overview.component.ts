@@ -5,6 +5,7 @@ import {PortfolioCompanies} from "../../shared/models/portfolioCompanies";
 import {PortfolioCompaniesService} from "../../shared/services/http/portfolioCompanies.service";
 import {AllCompanies} from "../../shared/models/allCompanies";
 import {AllCompaniesService} from "../../shared/services/http/allCompanies.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-overview', // Definiert den Selektor für die Komponente
@@ -19,7 +20,8 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
   displayedColumns: string[] = ['wkn', 'name', 'quantity','average', 'total'];
   constructor(private portfolioItemsService: PortfolioItemsService,
               private portfolioCompaniesService: PortfolioCompaniesService,
-              private allCompaniesService: AllCompaniesService) {
+              private allCompaniesService: AllCompaniesService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -38,5 +40,7 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
 
   details(wkn: String){
     console.log(wkn)
+
+    this.router.navigate(['overview/detail', wkn]);
   }
 }

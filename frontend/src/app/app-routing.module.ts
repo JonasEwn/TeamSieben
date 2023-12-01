@@ -37,7 +37,7 @@ const routes: Routes = [
     component: OverviewComponent,
   },
   {
-    path: 'overview/:id/detail',
+    path: 'overview/detail/:wkn',
     component: DetailComponent,
   },
   {
