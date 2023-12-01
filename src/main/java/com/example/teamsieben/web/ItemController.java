@@ -3,6 +3,7 @@ package com.example.teamsieben.web;
 import com.example.teamsieben.domain.Item;
 //import com.example.teamsieben.persistence.ItemProjection;
 import com.example.teamsieben.persistence.ItemProjection;
+import com.example.teamsieben.persistence.SameWknProjection;
 import com.example.teamsieben.service.ItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -71,6 +72,12 @@ public class ItemController {
     public ResponseEntity<Iterable<ItemProjection>> allOutput(){
         Iterable<ItemProjection> total = itemService.allOutput();
         return new ResponseEntity<>(total, HttpStatus.OK);
+    }
+
+    @GetMapping("/something/{wkn}")
+    public ResponseEntity<Iterable<SameWknProjection>> itemsWithSameWkn(@PathVariable String wkn){
+        Iterable<SameWknProjection> items = itemService.itemsWithSameWkn(wkn);
+        return new ResponseEntity<>(items, HttpStatus.OK);
     }
     //------------------------------------------
 }

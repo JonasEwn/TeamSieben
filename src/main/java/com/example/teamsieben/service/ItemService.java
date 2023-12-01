@@ -4,6 +4,7 @@ import com.example.teamsieben.domain.Item;
 import com.example.teamsieben.persistence.ItemProjection;
 import com.example.teamsieben.persistence.ItemRepository;
 //import com.example.teamsieben.persistence.ItemProjection;
+import com.example.teamsieben.persistence.SameWknProjection;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -81,6 +82,11 @@ public class ItemService {
     public Iterable<ItemProjection> allOutput(){
         Iterable<ItemProjection> all = itemRepository.allPricesAndAmounts();
         return all;
+    }
+
+    public Iterable<SameWknProjection> itemsWithSameWkn(String wkn){
+        Iterable<SameWknProjection> itemsWithSameWkn = itemRepository.itemsWithSameWkn(wkn);
+        return itemsWithSameWkn;
     }
 
     // -------------------------------------------------
