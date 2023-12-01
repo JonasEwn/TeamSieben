@@ -16,7 +16,7 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
   items: PortfolioItems[] = [];
   companies: PortfolioCompanies[] = [];
   all: AllCompanies[] = [];
-  displayedColumns: string[] = ['wkn', 'name', 'average', 'total'];
+  displayedColumns: string[] = ['wkn', 'name', 'quantity','average', 'total'];
   constructor(private portfolioItemsService: PortfolioItemsService,
               private portfolioCompaniesService: PortfolioCompaniesService,
               private allCompaniesService: AllCompaniesService) {
@@ -34,5 +34,9 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
     this.allCompaniesService.getData().subscribe(data =>{
       this.all = data
     });
+  }
+
+  details(wkn: String){
+    console.log(wkn)
   }
 }
