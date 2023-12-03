@@ -6,6 +6,8 @@ import {PortfolioCompaniesService} from "../../shared/services/http/portfolioCom
 import {AllCompanies} from "../../shared/models/allCompanies";
 import {AllCompaniesService} from "../../shared/services/http/allCompanies.service";
 import {Router} from "@angular/router";
+import { AddItemDialogComponent } from 'src/app/shared/components/add-item-dialog/add-item-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-overview', // Definiert den Selektor für die Komponente
@@ -21,6 +23,7 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
   constructor(private portfolioItemsService: PortfolioItemsService,
               private portfolioCompaniesService: PortfolioCompaniesService,
               private allCompaniesService: AllCompaniesService,
+              private dialog: MatDialog,
               private router: Router) {
   }
 
@@ -42,5 +45,8 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
     console.log(wkn)
 
     this.router.navigate(['overview/detail', wkn]);
+  }
+  openAddItem(): void {
+    const dialogRef = this.dialog.open(AddItemDialogComponent)
   }
 }
