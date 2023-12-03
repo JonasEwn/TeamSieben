@@ -1,3 +1,4 @@
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,7 +16,10 @@ import { AddItemDialogComponent } from './shared/components/add-item-dialog/add-
 import { HomeComponent } from './views/components/home/home.component';
 import {MatSortModule} from "@angular/material/sort";
 import { provideAnimations } from '@angular/platform-browser/animations';
-import {HttpClientModule} from "@angular/common/http";
+//import {HttpClientModule} from "@angular/common/http";
+import { LoginComponent } from './views/login/login.component';
+import { AuthInterceptorService } from './shared/auth-core/auth-interceptor..service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // This module is more or less the core-module of the application.
 // In this case such a module is needed to declare the used components and all relevant modules at once.
@@ -28,6 +32,7 @@ import {HttpClientModule} from "@angular/common/http";
     OverviewComponent,
     DetailComponent,
     ImpressumComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +45,16 @@ import {HttpClientModule} from "@angular/common/http";
     MatButtonModule,
     AddItemDialogComponent,
     MatSortModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

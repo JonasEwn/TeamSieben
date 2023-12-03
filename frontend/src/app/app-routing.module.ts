@@ -4,6 +4,9 @@ import { DetailComponent } from './views/detail/detail.component';
 import { OverviewComponent } from './views/overview/overview.component';
 import { ImpressumComponent } from './views/impressum/impressum.component';
 import { HomeComponent } from './views/components/home/home.component';
+import { AuthGuardService } from './shared/auth-core/auth-guard.service';
+import { LoginComponent } from './views/login/login.component';
+
 
 // Route Definiton: More detail under  https://angular.io/api/router/Routes
 // Details here:
@@ -29,17 +32,28 @@ import { HomeComponent } from './views/components/home/home.component';
 //
 const routes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent,
+  },
+ 
+  {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'overview',
     component: OverviewComponent,
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: ':id/detail',
+        component: DetailComponent,
+      },
+    ],
   },
-  {
-    path: 'overview/detail/:wkn',
-    component: DetailComponent,
-  },
+  
+
   {
     path: 'impressum',
     component: ImpressumComponent,
@@ -52,13 +66,13 @@ const routes: Routes = [
         './shared/components/four-zero-four/four-zero-four.component'
       ).then((mod) => mod.FourZeroFourComponent),
   },
+ 
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home',
+    redirectTo: 'login',
   },
   {
-    // This is loading a standalone component `FourZeroFourComponent`
     path: '**',
     loadComponent: () =>
       import(
