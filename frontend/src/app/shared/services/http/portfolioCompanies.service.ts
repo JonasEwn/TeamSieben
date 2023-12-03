@@ -17,4 +17,5 @@ export class PortfolioCompaniesService {
   getCompaniesData(): Observable<PortfolioCompanies[]>{
     return this.companyHttp.get<PortfolioCompanies[]>(this.companyUrl);
   }
+  
 }

@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AddItemDialogComponent } from './shared/components/add-item-dialog/add-item-dialog.component';
 import { HomeComponent } from './views/components/home/home.component';
-import {MatSortModule} from "@angular/material/sort";
+import { MatSortModule} from "@angular/material/sort";
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 
@@ -42,7 +42,9 @@ import {HttpClientModule} from "@angular/common/http";
     MatSortModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    provideAnimations()
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

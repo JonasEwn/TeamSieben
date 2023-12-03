@@ -18,4 +18,6 @@ export class PortfolioItemsService {
   getData(): Observable<PortfolioItems[]>{
     return this.itemsHttp.get<PortfolioItems[]>(this.itemsUrl);
   }
-}
+
+  }
+
