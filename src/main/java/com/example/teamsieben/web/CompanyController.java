@@ -2,6 +2,7 @@ package com.example.teamsieben.web;
 
 import com.example.teamsieben.domain.Company;
 import com.example.teamsieben.domain.Item;
+import com.example.teamsieben.persistence.GeneralInfoProjection;
 import com.example.teamsieben.service.CompanyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,5 +51,11 @@ public class CompanyController {
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
         companyService.deleteCompany(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/info/{wkn}")
+    public ResponseEntity<Iterable<GeneralInfoProjection>> generalInfo(@PathVariable String wkn){
+        Iterable<GeneralInfoProjection> info = companyService.generalInfo(wkn);
+        return new ResponseEntity<>(info, HttpStatus.OK);
     }
 }

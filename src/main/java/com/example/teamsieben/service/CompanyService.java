@@ -2,6 +2,7 @@ package com.example.teamsieben.service;
 
 import com.example.teamsieben.domain.Company;
 import com.example.teamsieben.persistence.CompanyRepository;
+import com.example.teamsieben.persistence.GeneralInfoProjection;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -61,9 +62,8 @@ public class CompanyService {
         return description == null || description.length() <= 255;
     }
 
-    //------------------------------------------
-    //              Test Nummer 2
-    //------------------------------------------
-
-    //------------------------------------------
+    public Iterable<GeneralInfoProjection> generalInfo(String wkn){
+        Iterable<GeneralInfoProjection> info = companyRepository.genralInfo(wkn);
+        return info;
+    }
 }

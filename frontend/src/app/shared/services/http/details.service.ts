@@ -1,21 +1,19 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {AllCompanies} from "../../models/allCompanies";
+import {Details} from "../../models/details";
 
 @Injectable({
   providedIn: "root",
 })
 
-export class AllCompaniesService {
-  private allUrl = 'http://localhost:8080/portfolio/all'
-
+export class DetailsService {
 
   constructor(private allHttp: HttpClient) {
     this.allHttp = allHttp;
   }
 
-  getData(): Observable<AllCompanies[]>{
-    return this.allHttp.get<AllCompanies[]>(this.allUrl);
+  getData(wkn: string | null): Observable<Details[]>{
+    return this.allHttp.get<Details[]>(`http://localhost:8080/portfolio/all/${wkn}`);
   }
 }

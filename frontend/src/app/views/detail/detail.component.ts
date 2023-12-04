@@ -1,8 +1,11 @@
 
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import { PortfolioItems } from 'src/app/shared/models/portfolioItems';
-import { PortfolioItemsService } from 'src/app/shared/services/http/portfolioItems.service';
+import {Overview} from "../../shared/models/overview";
+import {DetailsService} from "../../shared/services/http/details.service";
+import {Details} from "../../shared/models/details";
+import {GeneralInfo} from "../../shared/models/generalInfo";
+import {GeneralInfoService} from "../../shared/services/http/generalInfo.service";
 
 @Component({
   selector: 'app-detail',
@@ -11,19 +14,26 @@ import { PortfolioItemsService } from 'src/app/shared/services/http/portfolioIte
 })
 export class DetailComponent implements OnInit{
 
-  items: PortfolioItems[] = [];
-  displayedColumns: String[] = ['wkn', 'id', 'purchaseDate', 'quantity', 'purchasePrice'];
+  items: Details[] = [];
+  displayedColumns: String[] = ['purchaseDate', 'quantity', 'purchasePrice', 'totalPrice'];
+
+  generalInfos: GeneralInfo[] = [];
+
   constructor(private route: ActivatedRoute,
-              private portfolioItemsService: PortfolioItemsService) {
+              private detailsService: DetailsService,
+              private generalInfoService: GeneralInfoService) {
   }
 
   ngOnInit() {
+    const wkn = this.route.snapshot.paramMap.get('wkn');
+    console.log("Detail von WKN:", wkn);
 
-    this.portfolioItemsService.getData().subscribe(data => {
+    this.detailsService.getData(wkn).subscribe(data => {
       this.items = data
     });
 
-    const wkn = this.route.snapshot.paramMap.get('wkn');
-    console.log("Detail von WKN:", wkn);
+    this.generalInfoService.getData(wkn).subscribe(infoData => {
+        this.generalInfos = infoData
+    });
   }
 }

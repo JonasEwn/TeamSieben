@@ -74,7 +74,7 @@ public class ItemController {
         return new ResponseEntity<>(total, HttpStatus.OK);
     }
 
-    @GetMapping("/something/{wkn}")
+    @GetMapping("/all/{wkn}")
     public ResponseEntity<Iterable<SameWknProjection>> itemsWithSameWkn(@PathVariable String wkn){
         Iterable<SameWknProjection> items = itemService.itemsWithSameWkn(wkn);
         return new ResponseEntity<>(items, HttpStatus.OK);

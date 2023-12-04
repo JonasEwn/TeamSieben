@@ -10,7 +10,7 @@ import {PortfolioItems} from "../../models/portfolioItems";
 
 export class PortfolioItemsService {
 
-  private itemsUrl = 'http://localhost:8080/portfolio';
+  private itemsUrl = `http://localhost:8080/portfolio`;
 
   constructor(private itemsHttp: HttpClient) {
   }

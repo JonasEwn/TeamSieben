@@ -1,4 +1,4 @@
-export interface AllCompanies{
+export interface Overview {
   wkn: string;
   name: string;
   quantity: number;

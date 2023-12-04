@@ -6,7 +6,7 @@ import { ImpressumComponent } from './views/impressum/impressum.component';
 import { HomeComponent } from './views/components/home/home.component';
 
 // Route Definiton: More detail under  https://angular.io/api/router/Routes
-// Details here:
+// Overview here:
 // Routing is the mechanism by which users navigate through the application, typically via URLs.
 // The Angular Router enables navigation from one view to the next as users perform application tasks.
 // The Angular Router is an optional service that presents a particular component view for a given URL.
