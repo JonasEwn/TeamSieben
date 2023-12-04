@@ -17,6 +17,7 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
   }
 
   ngOnInit(): void {
+    console.log("WIrd aus irgendeinem Grund aktoviert")
     this.allCompaniesService.getData().subscribe(data =>{
       this.all = data
     });
