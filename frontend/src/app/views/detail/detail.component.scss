@@ -12,13 +12,35 @@
   .linke-info{
     float: left;
     width: 50%;
-    text-indent: 45%;
   }
+
+  .linke-werte{
+    float: right;
+    width: 50%;
+    text-align: left;
+  }
+
+  .linke-bezeichnung{
+    float: left;
+    width: 50%;
+    text-align: left;
+  }
+
+.rechte-werte{
+  float: right;
+  width: 50%;
+  text-align: left;
+}
+
+.rechte-bezeichnung{
+  float: left;
+  width: 50%;
+  text-align: left;
+}
 
   .rechte-info{
     float: right;
     width: 50%;
-    text-indent: 20%;
   }
 
   .container {

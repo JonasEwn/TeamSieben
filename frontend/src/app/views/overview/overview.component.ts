@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Overview} from "../../shared/models/overview";
 import {OverviewService} from "../../shared/services/http/overview.service";
 import {Router} from "@angular/router";
+import {Dialog} from "@angular/cdk/dialog";
+import {DetailComponent} from "../detail/detail.component";
+import {ImpressumComponent} from "../impressum/impressum.component";
 
 @Component({
   selector: 'app-overview', // Definiert den Selektor für die Komponente
@@ -13,7 +16,8 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
   all: Overview[] = [];
   displayedColumns: string[] = ['wkn', 'name', 'quantity','average', 'total'];
   constructor(private allCompaniesService: OverviewService,
-              private router: Router) {
+              private router: Router,
+              public dialog: Dialog) {
   }
 
   ngOnInit(): void {
@@ -26,5 +30,10 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
     console.log(wkn)
 
     this.router.navigate(['overview/detail', wkn]);
+  }
+
+  openDialog(){
+    console.log("Button clicked");
+    const dialogRef = this.dialog.open(OverviewComponent);
   }
 }

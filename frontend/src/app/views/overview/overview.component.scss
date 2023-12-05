@@ -2,6 +2,15 @@
   padding-left: 8px;
 }
 
+.oben-toolbar{
+  display: flex;
+  justify-content: space-between;
+}
+
+.kaufen-button{
+  flex: 0 0 auto;
+}
+
 .container {
   position: relative;
 }
