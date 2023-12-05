@@ -1,13 +1,13 @@
 <div class="infos">
-  <div class="linke-info">
-    <p>WKN: {{generalInfos[0].wkn}}</p>
-    <p>Name: {{generalInfos[0].name}}</p>
-    <p>Kategorie: {{generalInfos[0].category}}</p>
+  <div class="linke-info" *ngIf="generalInfos && generalInfos.length > 0">
+    <p *ngIf="generalInfos">WKN: {{generalInfos[0].wkn}}</p>
+    <p *ngIf="generalInfos">Name: {{generalInfos[0].name}}</p>
+    <p *ngIf="generalInfos">Kategorie: {{generalInfos[0].category}}</p>
   </div>
-  <div class="rechte-info">
-    <p>Gesamtanzahl: {{generalInfos[0].totalQuantity}}</p>
-    <p>durchschnittlicher Preis: {{generalInfos[0].averagePurchasePrice.toFixed(2)}} €</p>
-    <p>Beschreibung: {{generalInfos[0].description}}</p>
+  <div class="rechte-info" *ngIf="generalInfos && generalInfos.length > 0">
+    <p *ngIf="generalInfos">Gesamtanzahl: {{generalInfos[0].totalQuantity}}</p>
+    <p *ngIf="generalInfos">durchschnittlicher Preis: {{generalInfos[0].averagePurchasePrice.toFixed(2)}} €</p>
+    <p *ngIf="generalInfos">Beschreibung: {{generalInfos[0].description}}</p>
   </div>
 </div>
 
