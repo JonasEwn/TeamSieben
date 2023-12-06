@@ -1,41 +1,34 @@
-<h2 mat-dialog-title>Neuer Kauf hinzufügen</h2>
-<mat-dialog-content>
-  <form>
-    <div style="display: flex; flex-wrap: wrap;">
-      <!-- Erste Reihe -->
-      <div style="width: 50%; display: flex; flex-direction: column;">
-        <mat-form-field>
-          <input matInput formControlName="wkn" type="number" placeholder="WKN" id="wkn"/>
-        </mat-form-field>
+<!-- form-field.component.html -->
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Wkn</mat-label>
+    <input matInput formControlName="wkn" required>
+  </mat-form-field>
 
-        <mat-form-field>
-          <input matInput formControlName="name" type="text" placeholder="Name" id="name" required/>
-        </mat-form-field>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" required>
+  </mat-form-field>
 
-        <mat-form-field>
-          <input matInput formControlName="category" type="text" placeholder="Kategorie" id="category"/>
-        </mat-form-field>
+  <mat-form-field>
+    <mat-label>Beschreibung</mat-label>
+    <input matInput formControlName="description" required>
+  </mat-form-field>
 
-        <mat-form-field>
-          <input matInput formControlName="price" type="number" step="0.5" placeholder="Price" id="price"/>
-        </mat-form-field>
+  <mat-form-field>
+    <mat-label>Kategorie</mat-label>
+    <input matInput formControlName="category" required>
+  </mat-form-field>
 
-        <mat-form-field>
-          <input matInput formControlName="quantity" type="number" placeholder="Anzahl" id="quantity"/>
-        </mat-form-field>
-      </div>
+  <mat-form-field>
+    <mat-label>Anzahl</mat-label>
+    <input type="number" matInput formControlName="quantity" required>
+  </mat-form-field>
 
-      <!-- Zweite Reihe -->
-      <div style="width: 50%; display: flex; flex-direction: column;">
-        <mat-form-field>
-          <input matInput formControlName="description" type="text" placeholder="Beschreibung" id="description"/>
-        </mat-form-field>
-      </div>
-    </div>
+  <mat-form-field>
+    <mat-label>Preis</mat-label>
+    <input type="number" matInput formControlName="price" required>
+  </mat-form-field>
 
-    <button mat-raised-button type="submit" color="primary">Speichern</button>
-  </form>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="'close'">Close</button>
-</mat-dialog-actions>
+  <button mat-raised-button type="submit">Submit</button>
+</form>

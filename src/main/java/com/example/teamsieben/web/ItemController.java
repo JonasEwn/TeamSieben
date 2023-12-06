@@ -35,6 +35,7 @@ public class ItemController {
     public ResponseEntity<Item> addItem(@RequestBody Item item) {
         Item newItem;
         newItem = itemService.addNewItem(item);
+        System.out.println("ItemController.java wurde aufgerufen");
         return new ResponseEntity<>(newItem, HttpStatus.CREATED);
     }
 

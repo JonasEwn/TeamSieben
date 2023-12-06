@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {Dialog} from "@angular/cdk/dialog";
 import {DetailComponent} from "../detail/detail.component";
 import {ImpressumComponent} from "../impressum/impressum.component";
+import {HomeComponent} from "../components/home/home.component";
+import {AddItemDialogComponent} from "../../shared/components/add-item-dialog/add-item-dialog.component";
 
 @Component({
   selector: 'app-overview', // Definiert den Selektor für die Komponente
@@ -34,6 +36,7 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
 
   openDialog(){
     console.log("Button clicked");
-    const dialogRef = this.dialog.open(OverviewComponent);
+    const dialogRef = this.dialog.open(AddItemDialogComponent);
+
   }
 }

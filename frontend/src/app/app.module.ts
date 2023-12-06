@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AddItemDialogComponent } from './shared/components/add-item-dialog/add-item-dialog.component';
 import { HomeComponent } from './views/components/home/home.component';
 import {MatSortModule} from "@angular/material/sort";
-import { provideAnimations } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule, provideAnimations} from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 
 // This module is more or less the core-module of the application.
@@ -40,7 +40,8 @@ import {HttpClientModule} from "@angular/common/http";
     MatButtonModule,
     AddItemDialogComponent,
     MatSortModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

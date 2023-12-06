@@ -10,11 +10,16 @@ import {HttpClient} from "@angular/common/http";
 export class PortfolioCompaniesService {
 
   private companyUrl = 'http://localhost:8080/companies';
+  private companyPostUrl = 'http://localhost:8080/companies';
 
   constructor(private companyHttp: HttpClient) {
   }
 
   getCompaniesData(): Observable<PortfolioCompanies[]>{
     return this.companyHttp.get<PortfolioCompanies[]>(this.companyUrl);
+  }
+
+  sendData(data: any){
+    return this.companyHttp.post(this.companyPostUrl, data);
   }
 }
