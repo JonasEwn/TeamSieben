@@ -1,7 +1,7 @@
 // PortfolioItems model
 export interface PortfolioItems {
   wkn: string;
-  purchaseDate: string;
+  purchaseDate: Date;
   quantity: number;
   purchasePrice: number;
 }

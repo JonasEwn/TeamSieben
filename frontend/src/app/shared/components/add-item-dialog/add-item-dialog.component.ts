@@ -1,5 +1,5 @@
-import {Component, EventEmitter, numberAttribute, Output} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,7 +33,7 @@ export class AddItemDialogComponent {
 
   itemData: PortfolioItems[] = [];
   companyData: PortfolioCompanies[] = [];
-  currentDate = new Date().toISOString().substr(0, 10);
+  currentDate = new Date();
 
 
   @Output() formSubmit = new EventEmitter;
@@ -56,10 +56,10 @@ export class AddItemDialogComponent {
     console.log(this.myForm.value);
     const formData = this.myForm.value;
     this.itemData = [{
-      purchaseDate: this.currentDate,
+      wkn: formData.wkn,
       purchasePrice: formData.price,
       quantity: formData.quantity,
-      wkn: formData.wkn
+      purchaseDate: this.currentDate,
     }];
     console.log(this.itemData);
 
@@ -71,9 +71,7 @@ export class AddItemDialogComponent {
     }];
     console.log(this.companyData);
 
-    this.comapaniesService.sendData(this.companyData);
-    this.itemService.sendData(this.itemData);
+    this.comapaniesService.sendData(this.companyData).subscribe();
+    this.itemService.sendData(this.itemData).subscribe();
   }
-
-  protected readonly numberAttribute = numberAttribute;
 }

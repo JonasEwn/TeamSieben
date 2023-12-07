@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {PortfolioItems} from "../../models/portfolioItems";
+import {getXHRResponse} from "rxjs/internal/ajax/getXHRResponse";
 
 // Deklariert den PortfolioItemsService als Injectable-Service
 @Injectable({
@@ -21,7 +22,7 @@ export class PortfolioItemsService {
   }
 
   sendData(data: any){
-    console.log('SendData() wurde ausgeführt');
-    return this.itemsHttp.post(this.itemsPostUrl, data);
+    data = Object.assign({},...data);
+    return this.itemsHttp.post<PortfolioItems>(this.itemsPostUrl, data);
   }
 }
