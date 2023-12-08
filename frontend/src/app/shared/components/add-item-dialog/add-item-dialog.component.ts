@@ -9,6 +9,8 @@ import {PortfolioItems} from "../../models/portfolioItems";
 import {PortfolioCompanies} from "../../models/portfolioCompanies";
 import {PortfolioItemsService} from "../../services/http/portfolioItems.service";
 import {PortfolioCompaniesService} from "../../services/http/portfolioCompanies.service";
+import {Router} from "@angular/router";
+import {OverviewComponent} from "../../../views/overview/overview.component";
 
 
 // This component is used to add a new item to the list.
@@ -41,7 +43,8 @@ export class AddItemDialogComponent {
 
   constructor(private fb: FormBuilder,
               private itemService: PortfolioItemsService,
-              private comapaniesService: PortfolioCompaniesService) {
+              private comapaniesService: PortfolioCompaniesService,
+              private router: Router) {
     this.myForm = this.fb.group({
       wkn: ['', Validators.required],
       name: ['', Validators.required],
@@ -73,5 +76,8 @@ export class AddItemDialogComponent {
 
     this.comapaniesService.sendData(this.companyData).subscribe();
     this.itemService.sendData(this.itemData).subscribe();
+
+    this.router.navigate([OverviewComponent]);
+    window.location.reload();
   }
 }
