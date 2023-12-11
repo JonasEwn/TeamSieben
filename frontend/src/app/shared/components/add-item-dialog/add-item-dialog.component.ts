@@ -11,6 +11,7 @@ import {PortfolioItemsService} from "../../services/http/portfolioItems.service"
 import {PortfolioCompaniesService} from "../../services/http/portfolioCompanies.service";
 import {Router} from "@angular/router";
 import {OverviewComponent} from "../../../views/overview/overview.component";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 
 // This component is used to add a new item to the list.
@@ -36,6 +37,7 @@ export class AddItemDialogComponent {
   itemData: PortfolioItems[] = [];
   companyData: PortfolioCompanies[] = [];
   currentDate = new Date();
+  postError: String | null = null;  // Für WKN error hinzugefügt
 
 
   @Output() formSubmit = new EventEmitter;
@@ -74,10 +76,25 @@ export class AddItemDialogComponent {
     }];
     console.log(this.companyData);
 
-    this.comapaniesService.sendData(this.companyData).subscribe();
-    this.itemService.sendData(this.itemData).subscribe();
+    this.comapaniesService.sendData(this.companyData).subscribe(
+      (response) => {
+        // Handle success here
+        this.itemService.sendData(this.itemData).subscribe();
+        this.router.navigate([OverviewComponent]);
+        window.location.reload();
+        this.postError = null;
+      },
+      (error) => {  // Für WKN Error hinzugefügt
+        // Handle error here
+        console.error('Custom POST request failed:', error);
+        this.postError = error.message || "WKN existiert bereits";
+      }
+    );
+  }
 
-    this.router.navigate([OverviewComponent]);
-    window.location.reload();
+  // Für WKN Error hinzugefügt
+  hasError(controlName: string): boolean {
+    const control = this.myForm.get(controlName);
+    return !!((control && (control.dirty || control.touched) && control.invalid) || this.postError);
   }
 }

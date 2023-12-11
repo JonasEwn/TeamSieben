@@ -2,7 +2,8 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Wkn</mat-label>
-    <input matInput formControlName="wkn" required>
+    <input [ngClass]="{'error-input': hasError('wkn') || postError}" matInput formControlName="wkn" required>
+    <div *ngIf="postError" class="server-error">WKN existiert bereits!</div>
   </mat-form-field>
 
   <mat-form-field>
