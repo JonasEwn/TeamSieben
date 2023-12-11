@@ -1,5 +1,5 @@
 <!-- form-field.component.html -->
-<form [formGroup]="myForm" >
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Wkn</mat-label>
     <input matInput formControlName="wkn">

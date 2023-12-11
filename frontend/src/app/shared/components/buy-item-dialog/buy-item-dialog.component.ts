@@ -9,6 +9,8 @@ import {disableDebugTools} from "@angular/platform-browser";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {PortfolioCompanies} from "../../models/portfolioCompanies";
 import {Observable} from "rxjs";
+import {PortfolioItems} from "../../models/portfolioItems";
+import {PortfolioItemsService} from "../../services/http/portfolioItems.service";
 
 @Component({
   selector: 'app-buy-item-dialog',
@@ -20,14 +22,17 @@ import {Observable} from "rxjs";
 export class BuyItemDialogComponent implements OnInit{
 
   myForm: FormGroup;
+  itemData: PortfolioItems[] = [];
+  currentDate = new Date();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private fb: FormBuilder,
-              private httpClient: HttpClient) {
+              private httpClient: HttpClient,
+              private itemService: PortfolioItemsService) {
     console.log(data)
     this.myForm = this.fb.group({
       wkn: [{value: this.data.wkn, disabled: true}],
-      name: [{value: 'test', disabled: true}],
+      name: [{value: '' , disabled: true}],
       description: [{value: '', disabled: true}],
       category: [{value: '', disabled: true}],
       quantity: ['', Validators.required],
@@ -48,6 +53,20 @@ export class BuyItemDialogComponent implements OnInit{
         })
       });
 
+  }
+
+  onSubmit(){
+    console.log(this.myForm.value);
+    const formData = this.myForm.value;
+
+    this.itemData = [{
+      wkn: this.data.wkn,
+      purchasePrice: formData.price,
+      quantity: formData.quantity,
+      purchaseDate: this.currentDate,
+    }];
+    this.itemService.sendData(this.itemData).subscribe();
+    window.location.reload();
   }
 
 }
