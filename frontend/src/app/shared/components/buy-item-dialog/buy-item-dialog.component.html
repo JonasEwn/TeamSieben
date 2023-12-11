@@ -1,1 +1,34 @@
-<p>buy-item-dialog works!</p>
+<!-- form-field.component.html -->
+<form [formGroup]="myForm" >
+  <mat-form-field>
+    <mat-label>Wkn</mat-label>
+    <input matInput formControlName="wkn">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Beschreibung</mat-label>
+    <input matInput formControlName="description">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Kategorie</mat-label>
+    <input matInput formControlName="category">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Anzahl</mat-label>
+    <input type="number" matInput formControlName="quantity" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Preis</mat-label>
+    <input type="number" matInput formControlName="price" required>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit">Submit</button>
+</form>

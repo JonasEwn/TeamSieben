@@ -2,12 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Overview} from "../../shared/models/overview";
 import {OverviewService} from "../../shared/services/http/overview.service";
 import {Router} from "@angular/router";
-import {Dialog} from "@angular/cdk/dialog";
-import {DetailComponent} from "../detail/detail.component";
-import {ImpressumComponent} from "../impressum/impressum.component";
-import {HomeComponent} from "../components/home/home.component";
 import {AddItemDialogComponent} from "../../shared/components/add-item-dialog/add-item-dialog.component";
 import {BuyItemDialogComponent} from "../../shared/components/buy-item-dialog/buy-item-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-overview', // Definiert den Selektor für die Komponente
@@ -20,7 +17,7 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
   displayedColumns: string[] = ['wkn', 'name', 'quantity','average', 'total', 'buy'];
   constructor(private allCompaniesService: OverviewService,
               private router: Router,
-              public dialog: Dialog) {
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -44,6 +41,9 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
   buyItem(wkn: string, event: Event){
     event.stopPropagation();
     console.log("Buy item of this wkn: ", wkn);
-    this.dialog.open(BuyItemDialogComponent);
+    this.dialog.open(BuyItemDialogComponent, {
+      data: {wkn: wkn},
+    });
+
   }
 }

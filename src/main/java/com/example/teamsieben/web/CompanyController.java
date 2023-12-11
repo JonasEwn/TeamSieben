@@ -58,4 +58,10 @@ public class CompanyController {
         Iterable<GeneralInfoProjection> info = companyService.generalInfo(wkn);
         return new ResponseEntity<>(info, HttpStatus.OK);
     }
+
+    @GetMapping("/company/{wkn}")
+    public ResponseEntity<Company> getCompanyByWkn(@PathVariable String wkn){
+        Company info = companyService.getCompanyByWkn(wkn);
+        return new ResponseEntity<>(info, HttpStatus.OK);
+    }
 }

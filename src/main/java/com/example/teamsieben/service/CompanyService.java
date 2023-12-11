@@ -66,4 +66,9 @@ public class CompanyService {
         Iterable<GeneralInfoProjection> info = companyRepository.genralInfo(wkn);
         return info;
     }
+
+    public Company getCompanyByWkn(String wkn){
+        Company info = companyRepository.getCompanyByWkn(wkn);
+        return info;
+    }
 }
