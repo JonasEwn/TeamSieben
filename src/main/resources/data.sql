@@ -24,3 +24,6 @@ VALUES ('987654', '2023-11-03', 200, 30);
 
 INSERT INTO item (wkn, purchase_date, quantity, purchase_price)
 VALUES ('BTC', '2023-11-03', 1, 32000);
+
+INSERT INTO users (name, user_name, password)
+VALUES ('John Doe', 'john.doe', 'mypassword')
