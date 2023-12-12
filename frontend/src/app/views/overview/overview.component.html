@@ -1,6 +1,6 @@
 <mat-toolbar class="oben-toolbar">
   <button mat-raised-button color="warn" class="kaufen-button" (click)="openDialog()">Kaufen +</button>
-  <button mat-raised-button class="bunutzer-button" (click)="openUserPage()">Bunutzer</button>
+  <button mat-raised-button class="bunutzer-button" (click)="openUserPage()">Benutzer</button>
 </mat-toolbar>
 
 <div class="container">
@@ -39,7 +39,6 @@
         <td mat-cell *matCellDef="let row">
           <!-- Hier fügst du den HTML-Code für die Aktion ein -->
           <!-- Beispiel: Ein Button, der eine Methode aufruft -->
-          <span class="spacer"></span>
           <button mat-stroked-button color="primary" class="item-kaufen-button" (click)="buyItem(row.wkn, $event)">+</button>
         </td>
       </ng-container>

@@ -1,3 +1,6 @@
+<div>
+  <button mat-raised-button class="hinzufügen-button" (click)="addUser()">Neuer Benutzer</button>
+</div>
 <div class="container">
   <div class="table-container">
     <table mat-table [dataSource]="users" class="table" matSort matSortActive="created"
@@ -16,8 +19,23 @@
 
       <ng-container matColumnDef="password">
         <th mat-header-cell *matHeaderCellDef>Passwort</th>
-        <td mat-cell *matCellDef="let row">{{ row.password }}</td>
+        <td mat-cell *matCellDef="let row">************</td>
       </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Löschen</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-stroked-button color="primary" class="item-kaufen-button" (click)="delete(row.id)">Löschen</button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef>Bearbeiten</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-stroked-button color="primary" class="item-kaufen-button" (click)="update(row.id)">bearbeiten</button>
+        </td>
+      </ng-container>
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

@@ -4,7 +4,7 @@ import { DetailComponent } from './views/detail/detail.component';
 import { OverviewComponent } from './views/overview/overview.component';
 import { ImpressumComponent } from './views/impressum/impressum.component';
 import { HomeComponent } from './views/components/home/home.component';
-import {AddUserComponent} from "./views/components/add-user/add-user.component";
+import {UserComponent} from "./views/components/user/user.component";
 
 // Route Definiton: More detail under  https://angular.io/api/router/Routes
 // Overview here:
@@ -43,7 +43,7 @@ const routes: Routes = [
   },
   {
     path: 'overview/users',
-    component: AddUserComponent,
+    component: UserComponent,
   },
   {
     path: 'impressum',
