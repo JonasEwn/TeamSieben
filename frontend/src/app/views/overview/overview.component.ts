@@ -46,4 +46,8 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
     });
 
   }
+
+  openUserPage(){
+    this.router.navigate(['overview/users']);
+  }
 }

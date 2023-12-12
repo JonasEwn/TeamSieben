@@ -1,37 +1,48 @@
 package com.example.teamsieben.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "users")
 public class Users {
 
     @Id
-    private String userName;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true)
+    private String username;
 
     private String password;
 
     private String name;
 
 
-    public Users(String userName, String password, String name) {
-        this.userName = userName;
+    public Users(Long id, String username, String password, String name) {
+        this.username = username;
         this.password = password;
         this.name = name;
+        this.id = id;
     }
 
     public Users() {
 
     }
 
-    public String getUserName() {
-        return userName;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
