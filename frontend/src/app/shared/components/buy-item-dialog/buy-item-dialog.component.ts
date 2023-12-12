@@ -1,14 +1,11 @@
-import {Component, Inject, Injectable, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {disableDebugTools} from "@angular/platform-browser";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {PortfolioCompanies} from "../../models/portfolioCompanies";
-import {Observable} from "rxjs";
 import {PortfolioItems} from "../../models/portfolioItems";
 import {PortfolioItemsService} from "../../services/http/portfolioItems.service";
 

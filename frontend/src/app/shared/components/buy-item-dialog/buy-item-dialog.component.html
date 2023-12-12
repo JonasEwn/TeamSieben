@@ -30,5 +30,5 @@
     <input type="number" matInput formControlName="price" required>
   </mat-form-field>
 
-  <button mat-raised-button type="submit">Submit</button>
+  <button mat-raised-button type="submit" [disabled]="myForm.invalid">Submit</button>
 </form>

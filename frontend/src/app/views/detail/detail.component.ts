@@ -1,7 +1,6 @@
 
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {Overview} from "../../shared/models/overview";
 import {DetailsService} from "../../shared/services/http/details.service";
 import {Details} from "../../shared/models/details";
 import {GeneralInfo} from "../../shared/models/generalInfo";

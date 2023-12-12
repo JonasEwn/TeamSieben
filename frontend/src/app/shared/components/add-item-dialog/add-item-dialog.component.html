@@ -6,9 +6,9 @@
     <div *ngIf="postError" class="server-error">WKN existiert bereits!</div>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
-    <input matInput formControlName="name" required>
+    <input matInput formControlName="name">
   </mat-form-field>
 
   <mat-form-field>
@@ -31,5 +31,7 @@
     <input type="number" matInput formControlName="price" required>
   </mat-form-field>
 
-  <button mat-raised-button type="submit">Submit</button>
+  <button mat-raised-button type="submit" [disabled]="myForm.invalid" [ngClass]="{'submit-button' : myForm.valid}">
+    Submit
+  </button>
 </form>

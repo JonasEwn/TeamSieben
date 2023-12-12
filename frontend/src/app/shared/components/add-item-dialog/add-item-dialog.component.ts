@@ -11,7 +11,6 @@ import {PortfolioItemsService} from "../../services/http/portfolioItems.service"
 import {PortfolioCompaniesService} from "../../services/http/portfolioCompanies.service";
 import {Router} from "@angular/router";
 import {OverviewComponent} from "../../../views/overview/overview.component";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 
 
 // This component is used to add a new item to the list.
