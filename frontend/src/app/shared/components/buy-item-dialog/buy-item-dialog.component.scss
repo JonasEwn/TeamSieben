@@ -1,0 +1,17 @@
+form {
+  width: 800px;
+  margin: auto;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  margin-top: 16px;
+}
+
+// Für WKN Error hinzugefügt
+.server-error{
+  color: #d41919;
+}

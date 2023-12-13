@@ -1,0 +1,22 @@
+<!-- form-field.component.html -->
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Benutzername</mat-label>
+    <input [ngClass]="{'error-input': hasError('wkn') || postError}" matInput formControlName="username">
+    <div *ngIf="postError" class="server-error">Username existiert bereits!</div>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Passwort</mat-label>
+    <input matInput formControlName="password">
+  </mat-form-field>
+
+  <button mat-raised-button type="submit" [disabled]="myForm.invalid" [ngClass]="{'submit-button' : myForm.valid}">
+    Submit
+  </button>
+</form>

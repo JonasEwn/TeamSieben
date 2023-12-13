@@ -1,0 +1,61 @@
+<div class="infos">
+  <div class="linke-info" *ngIf="generalInfos && generalInfos.length > 0">
+    <div class="linke-bezeichnung">
+      <p>WKN:</p>
+      <p>Name:</p>
+      <p>Kategorie:</p>
+    </div>
+    <div class="linke-werte">
+      <p *ngIf="generalInfos"><b>{{ generalInfos[0].wkn }}</b></p>
+      <p *ngIf="generalInfos"><b>{{ generalInfos[0].name }}</b></p>
+      <p *ngIf="generalInfos"><b>{{ generalInfos[0].category }}</b></p>
+    </div>
+  </div>
+  <div class="rechte-info" *ngIf="generalInfos && generalInfos.length > 0">
+    <div class="rechte-bezeichnung">
+      <p>Gesamtzahl:</p>
+      <p>durchschnittlicher Preis:</p>
+      <p>Beschreibung:</p>
+    </div>
+    <div class="rechte-werte">
+      <p *ngIf="generalInfos"><b>{{ generalInfos[0].totalQuantity }}</b></p>
+      <p *ngIf="generalInfos"><b>{{ generalInfos[0].averagePurchasePrice.toFixed(2) }} €</b></p>
+      <p *ngIf="generalInfos"><b>{{ generalInfos[0].description }}</b></p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="table-container">
+    <table mat-table [dataSource]="items" class="table" matSort matSortActive="created"
+           matSortDisableClear matSortDirection="desc" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="purchaseDate">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let row">{{ row.purchaseDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Anzahl</th>
+        <td mat-cell *matCellDef="let row">{{ row.quantity }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="purchasePrice">
+        <th mat-header-cell *matHeaderCellDef>Preis</th>
+        <td mat-cell *matCellDef="let row">{{ row.purchasePrice }} €</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef>Gesamtpreis</th>
+        <td mat-cell *matCellDef="let row">{{ row.totalPrice }} €</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <div class="paginator-container">
+    <mat-paginator></mat-paginator>
+  </div>
+</div>
