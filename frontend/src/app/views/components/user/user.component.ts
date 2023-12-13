@@ -9,6 +9,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatDialog} from "@angular/material/dialog";
 import {AddItemDialogComponent} from "../../../shared/components/add-item-dialog/add-item-dialog.component";
 import {AddUserDialogComponent} from "../../../shared/components/add-user-dialog/add-user-dialog.component";
+import {UpdateUserComponent} from "../../../shared/components/update-user/update-user.component";
 
 @Component({
   selector: 'app-add-user',
@@ -49,7 +50,9 @@ export class UserComponent implements OnInit{
     this.dialog.open(AddUserDialogComponent);
   }
 
-  update(id: number){
-
+  update(username: string){
+    this.dialog.open(UpdateUserComponent, {
+      data: {username: username},
+    });
   }
 }
