@@ -29,8 +29,9 @@ public class BasicAuthenticationConfiguration {
                 .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.ignoringRequestMatchers(h2ConsoleRequestMatcher))
                 .authorizeHttpRequests(request ->
                         request
-                                .requestMatchers(new AntPathRequestMatcher("/companies/**")).hasAuthority("John Doe")
-                                .requestMatchers(new AntPathRequestMatcher("/users/**")).hasAuthority("John Doe")
+                                .requestMatchers(new AntPathRequestMatcher("/companies/**")).authenticated()
+                                .requestMatchers(new AntPathRequestMatcher("/users/**")).authenticated()
+                                .requestMatchers(new AntPathRequestMatcher("/portfolio/**")).authenticated()
                 ).httpBasic(Customizer.withDefaults());
         return httpSecurity.build();
     }
