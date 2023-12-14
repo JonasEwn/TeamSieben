@@ -37,6 +37,7 @@ export class AppComponent {
     {
       name: 'Impressum',
       routePath: 'impressum',
+      visible: of(true),
     },
     //{name: '404', routePath: 'somewhatever',},
     {

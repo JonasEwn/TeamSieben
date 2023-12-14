@@ -11,13 +11,15 @@ import { AuthCoreService } from 'src/app/shared/auth-core/auth-core.service';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
+
   public loginForm!: FormGroup;
   public durationInSeconds = 3;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthCoreService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -30,19 +32,18 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.openSnackBar('Try to login ...');
       const { username, password } = this.loginForm.value;
-    this.authService.login(username, password).subscribe(
+      this.authService.login(username, password).subscribe(
       (response) => {
          // Handle successful login response here
-          console.log('Login successful', response);
-          this.router.navigate(['home']);
+        console.log('Login successful', response);
+          this.router.navigate(['overview']);
         },
-        (error) => {
-          // Handle login error here
-          console.error('Login error', error);
-          this.router.navigate(['home']);
-          this.openSnackBar('Login error ...', 'Close');
-        }
-      );
+      (error) => {
+        // Handle login error here
+        console.error('Login error', error);
+        this.router.navigate(['home']);
+        this.openSnackBar('Login error ...', 'Close');
+      });
     }
   }
   openSnackBar(message: string, action: string = '') {

@@ -17,7 +17,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS,HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './views/login/login.component';
-import { AuthInterceptorService } from './shared/auth-core/auth-interceptor..service';
+import { AuthInterceptorService } from './shared/auth-core/auth-interceptor.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './views/logout/logout.component';
 // This module is more or less the core-module of the application.

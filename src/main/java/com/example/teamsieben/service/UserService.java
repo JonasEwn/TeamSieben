@@ -73,11 +73,5 @@ public class UserService implements UserDetailsService {
         return authorities;
     }
 
-
-    public Object searchByUsername(String username, String password){
-        Object user = userRepository.searchByUsername(username, password);
-        return user;
-    }
-
     //----------------------------------------------------------
 }

@@ -26,12 +26,14 @@ public class BasicAuthenticationConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         AntPathRequestMatcher h2ConsoleRequestMatcher = new AntPathRequestMatcher("/**");
         httpSecurity
-                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.ignoringRequestMatchers(h2ConsoleRequestMatcher))
+                .csrf(httpSecurityCsrfConfigurer ->
+                        httpSecurityCsrfConfigurer
+                                .ignoringRequestMatchers(h2ConsoleRequestMatcher))
                 .authorizeHttpRequests(request ->
                         request
-                                .requestMatchers(new AntPathRequestMatcher("/companies/**")).authenticated()
-                                .requestMatchers(new AntPathRequestMatcher("/users/**")).authenticated()
-                                .requestMatchers(new AntPathRequestMatcher("/portfolio/**")).authenticated()
+                                .requestMatchers(new AntPathRequestMatcher("/companies/**")).permitAll()//.authenticated()
+                                .requestMatchers(new AntPathRequestMatcher("/users/**")).permitAll()//.authenticated().authenticated()
+                                .requestMatchers(new AntPathRequestMatcher("/portfolio/**")).permitAll()//.authenticated().authenticated()
                 ).httpBasic(Customizer.withDefaults());
         return httpSecurity.build();
     }
