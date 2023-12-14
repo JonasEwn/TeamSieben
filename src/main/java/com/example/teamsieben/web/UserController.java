@@ -54,7 +54,7 @@ public class UserController {
     //------------------List nach Username----------------------
     @GetMapping("/login/{username}:{password}")
     public ResponseEntity<Object> searchByUsername(@PathVariable String username, @PathVariable String password) {
-        Object users = userService.searchByUsername(username, password);
+        Object users = userService.loadUserByUsername(username);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
     //----------------------------------------------------------
