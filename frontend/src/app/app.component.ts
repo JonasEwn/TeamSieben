@@ -19,20 +19,11 @@ export class AppComponent {
       name: 'Portfolio',
       routePath: 'overview',
       visible: this.auth.isAuthenticated$(),
-      
-
     },
     {
       name: 'Message List',
       routePath: 'message-list',
       visible: this.auth.isAuthenticated$(),
-    },
-    {
-      name: 'Logout',
-      routePath: 'logout',
-      visible: this.auth.isAuthenticated$(),
-      highlighted: true,
-      icon: 'logout',
     },
     {
       name: 'Login',
@@ -47,9 +38,13 @@ export class AppComponent {
       name: 'Impressum',
       routePath: 'impressum',
     },
+    //{name: '404', routePath: 'somewhatever',},
     {
-      name: '404',
-      routePath: 'somewhatever',
+      name: 'Logout',
+      routePath: 'logout',
+      visible: this.auth.isAuthenticated$(),
+      highlighted: true,
+      icon: 'logout',
     },
   ];constructor(private auth: AuthCoreService, private router: Router) {}
 

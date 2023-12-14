@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
-const LOGIN_URL = 'http://localhost:8080/v1/login';
+const LOGIN_URL = 'http://localhost:8080/users';
 const AUTH_TOKEN_NAME = 'authToken';
 @Injectable({
   providedIn: 'root',
@@ -11,9 +11,9 @@ const AUTH_TOKEN_NAME = 'authToken';
   export class AuthCoreService {
       private isAuthenticatedSubject: BehaviorSubject<boolean> =
           new BehaviorSubject<boolean>(false);
-  
+
       constructor(private http: HttpClient, private router: Router) {}
-      
+
       public isAuthenticated$(): Observable<boolean> {
           let token = this.getToken();
           if (token === undefined || token === null) {
@@ -43,7 +43,7 @@ const AUTH_TOKEN_NAME = 'authToken';
             this.setAuthState(false);
             this.router.navigate(['/logout']);
     }
-    
+
     public getToken() {
         return sessionStorage.getItem(AUTH_TOKEN_NAME);
     }
@@ -51,7 +51,7 @@ const AUTH_TOKEN_NAME = 'authToken';
       sessionStorage.setItem(AUTH_TOKEN_NAME, token);
       this.setAuthState(true);
   }
-  
+
   private setAuthState(isAuthenticated: boolean): void {
       this.isAuthenticatedSubject.next(isAuthenticated);
   }private createBasicAuthToken(username: String, password: String) {

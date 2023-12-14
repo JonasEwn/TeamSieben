@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -42,11 +44,18 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    @DeleteMapping("/{username}")
+    public ResponseEntity<Void> deleteUser(@PathVariable String username) {
+        userService.deleteUser(username);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    //----------------------------------------------------------
+    //------------------List nach Username----------------------
+    @GetMapping("/login/{username}:{password}")
+    public ResponseEntity<Object> searchByUsername(@PathVariable String username, @PathVariable String password) {
+        Object users = userService.searchByUsername(username, password);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
     //----------------------------------------------------------
 }
