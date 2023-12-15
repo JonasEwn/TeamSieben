@@ -38,11 +38,13 @@ export class UserComponent implements OnInit{
 
 
   delete(id: string){
+    const user = sessionStorage.getItem('username');
+    console.log(user);
     const isConfirmed = window.confirm('Wollen sie diesen Benutzer wirklich löschen?');
     console.log(id);
     if(isConfirmed){
       this.httpClient.delete(`http://localhost:8080/users/${id}`).subscribe();
-      window.location.reload();
+      //window.location.reload();
     }
   }
 
@@ -55,4 +57,10 @@ export class UserComponent implements OnInit{
       data: {username: username},
     });
   }
+
+  getUser(){
+    const user = sessionStorage.getItem('username')
+  }
+
+  protected readonly sessionStorage = sessionStorage;
 }
