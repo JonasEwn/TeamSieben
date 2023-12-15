@@ -8,11 +8,11 @@ import {
   import { Injectable } from '@angular/core';
   import { Observable, map, switchMap, take } from 'rxjs';
   import { AuthCoreService } from './auth-core.service';
-  
+
   @Injectable()
   export class AuthInterceptorService implements HttpInterceptor {
     constructor(private auth: AuthCoreService) {}
-  
+
     intercept(
       req: HttpRequest<any>,
       next: HttpHandler
@@ -24,7 +24,7 @@ import {
         .subscribe((isAuthenticated) => {
           auth = isAuthenticated;
         });
-  
+
       if (auth) {
         const authReq = req.clone({
           headers: new HttpHeaders({

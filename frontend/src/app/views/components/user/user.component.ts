@@ -37,7 +37,7 @@ export class UserComponent implements OnInit{
   }
 
 
-  delete(id: number){
+  delete(id: string){
     const isConfirmed = window.confirm('Wollen sie diesen Benutzer wirklich löschen?');
     console.log(id);
     if(isConfirmed){

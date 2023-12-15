@@ -32,9 +32,7 @@ public class BasicAuthenticationConfiguration implements WebMvcConfigurer {
                                 .ignoringRequestMatchers(h2ConsoleRequestMatcher))*/
                 .authorizeHttpRequests(request ->
                         request
-                                .requestMatchers(new AntPathRequestMatcher("/companies")).authenticated()
-                                .requestMatchers(new AntPathRequestMatcher("/users")).authenticated()
-                                .requestMatchers(new AntPathRequestMatcher("/portfolio/**")).authenticated()
+                                .requestMatchers(new AntPathRequestMatcher("/**")).authenticated()
                 )
                 .httpBasic(Customizer.withDefaults());
         return httpSecurity.build();
