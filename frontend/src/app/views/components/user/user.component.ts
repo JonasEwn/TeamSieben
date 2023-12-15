@@ -46,6 +46,7 @@ export class UserComponent implements OnInit{
       this.httpClient.delete(`http://localhost:8080/users/${id}`).subscribe();
       //window.location.reload();
     }
+    window.location.reload();
   }
 
   addUser(){
