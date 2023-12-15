@@ -34,6 +34,7 @@ export class AuthCoreService {
       (res) => {
         this.registerSuccessfulLogin(`${window.btoa(username + ':' + password)}`);
         this.setAuthState(true);
+        sessionStorage.setItem('username', username)
         this.router.navigate(['overview']);
       }));
   }

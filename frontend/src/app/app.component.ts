@@ -21,7 +21,7 @@ export class AppComponent {
       visible: this.auth.isAuthenticated$(),
     },
     {
-      name: 'Message List',
+      name: 'User List',
       routePath: 'message-list',
       visible: this.auth.isAuthenticated$(),
     },

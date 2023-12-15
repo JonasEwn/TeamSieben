@@ -2,7 +2,7 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Benutzername</mat-label>
-    <input [ngClass]="{'error-input': hasError('wkn') || postError}"  matInput formControlName="username">
+    <input [ngClass]="{'error-input': hasError('username') || postError}"  matInput formControlName="username">
     <div *ngIf="postError" class="server-error">Username existiert bereits!</div>
   </mat-form-field>
 

@@ -28,13 +28,12 @@ export class UpdateUserComponent {
               private router: Router) {
     this.myForm = this.fb.group({
       name: [''],
-      username: [''],
       password: [''],
     });
   }
 
   onSubmit(){
-    console.log(this.myForm.value)
+    console.log(this.data.username)
     this.http.put(`http://localhost:8080/users/${this.data.username}`, this.myForm.value).subscribe(
       success => {
         this.router.navigate([UserComponent]);
