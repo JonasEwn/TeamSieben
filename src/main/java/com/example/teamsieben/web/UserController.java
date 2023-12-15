@@ -52,4 +52,31 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    //------------------------------------------------------
+    //------------------------------------------------------
+    @GetMapping("/login")
+    public ResponseEntity<String> searchByUsername(@PathVariable String username, @PathVariable String password) {
+
+
+        Object users = userService.loadUserByUsername(username);
+        //return new ResponseEntity<>(users, HttpStatus.OK);
+
+        if (isAuthenticated()) {
+            return new ResponseEntity<>("Benutzerinformationen hier...", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Unautorisierter Zugriff", HttpStatus.FORBIDDEN);
+        }
+    }
+
+    private boolean isAuthenticated() {
+        // Hier könnten Sie die Authentifizierung und Autorisierung überprüfen
+        // Diese Methode sollte Ihre Geschäftslogik zur Authentifizierung und Autorisierung enthalten.
+        // Rückgabewert true bedeutet, dass der Benutzer authentifiziert und autorisiert ist.
+        // Andernfalls geben Sie false zurück.
+        // Sie können auch Spring Security für umfangreichere Authentifizierungs- und Autorisierungslogik verwenden.
+        // Dies ist nur ein einfaches Beispiel.
+        return true; // Vereinfacht für Demo-Zwecke
+    }
+    //------------------------------------------------------
+
 }

@@ -14,6 +14,6 @@ export class DetailsService {
   }
 
   getData(wkn: string | null): Observable<Details[]>{
-    return this.allHttp.get<Details[]>(`http://localhost:8080/portfolio/all/${wkn}`);
+    return this.allHttp.get<Details[]>(`http://localhost:8080/portfolio/all/${wkn}`, {withCredentials:true});
   }
 }

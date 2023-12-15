@@ -3,6 +3,8 @@ package com.example.teamsieben.service;
 import com.example.teamsieben.domain.Users;
 import com.example.teamsieben.persistence.UserRepository;
 
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -51,8 +53,9 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    @Transactional
     public void deleteUser(String username) {
-        userRepository.deleteById(username);
+        userRepository.deleteByUsername(username);
     }
 
     //----------------------------------------------------------

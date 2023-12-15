@@ -27,9 +27,9 @@ export class UpdateUserComponent {
               private http: HttpClient,
               private router: Router) {
     this.myForm = this.fb.group({
-      name: ['Jonas', Validators.required],
-      username: ['jonas.ewn', Validators.required],
-      password: ['123456', Validators.required],
+      name: [''],
+      username: [''],
+      password: [''],
     });
   }
 
