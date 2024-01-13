@@ -9,9 +9,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query("SELECT id, quantity, purchaseDate, purchasePrice, wkn FROM Item ")
-    Iterable<ItemProjection> findItemsWithoutDescriptionAndCategory();
+    Iterable<Map<String, Object>> findItemsWithoutDescriptionAndCategory();
 
     //----------------------------------------------------
     //      Durchschnittliche Kosten und Gesamtpreis
@@ -23,10 +27,10 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     Iterable<Double> allAmounts(String wkn);
 
     @Query("SELECT c.name AS name, i.wkn as wkn, SUM(i.quantity) As quantity, AVG(i.purchasePrice) AS average, SUM(i.quantity * i.purchasePrice) AS total FROM Item i JOIN Company c ON c.wkn = i.wkn GROUP BY i.wkn")
-    Iterable<ItemProjection> allPricesAndAmounts();
+    Iterable<Map<String, Object>> allPricesAndAmounts();
 
     @Query("Select quantity as quantity, purchaseDate as purchaseDate, purchasePrice as purchasePrice, ((CAST(quantity AS DOUBLE)) * purchasePrice) as totalPrice FROM Item WHERE wkn = ?1")
-    Iterable<SameWknProjection> itemsWithSameWkn(String wkn);
+    Iterable<Map<String, Object>> itemsWithSameWkn(String wkn);
     //----------------------------------------------------
     /*
     SELECT item.wkn, company.name, sum(item.quantity) as quantity, sum(CAST(item.quantity AS DOUBLE) * item.purchase_Price) AS total

@@ -2,9 +2,15 @@ package com.example.teamsieben.service;
 
 import com.example.teamsieben.domain.Company;
 import com.example.teamsieben.persistence.CompanyRepository;
-import com.example.teamsieben.persistence.GeneralInfoProjection;
+import com.example.teamsieben.persistence.SwaggerFeignClient;
+import com.fasterxml.jackson.databind.JsonNode;
+import feign.Request;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -12,8 +18,11 @@ public class CompanyService {
 
     private final CompanyRepository companyRepository;
 
-    public CompanyService(CompanyRepository companyRepository) {
+    private final SwaggerFeignClient swaggerFeignClient;
+
+    public CompanyService(CompanyRepository companyRepository, SwaggerFeignClient swaggerFeignClient) {
         this.companyRepository = companyRepository;
+        this.swaggerFeignClient = swaggerFeignClient;
     }
 
     public Company saveCompany(Company company){
@@ -62,13 +71,23 @@ public class CompanyService {
         return description == null || description.length() <= 255;
     }
 
-    public Iterable<GeneralInfoProjection> generalInfo(String wkn){
-        Iterable<GeneralInfoProjection> info = companyRepository.genralInfo(wkn);
+    public Iterable<Map<String, Object>> generalInfo(String wkn){
+        Iterable<Map<String, Object>> info = companyRepository.genralInfo(wkn);
         return info;
     }
 
     public Company getCompanyByWkn(String wkn){
         Company info = companyRepository.getCompanyByWkn(wkn);
         return info;
+    }
+
+    public Map<String, Object> getCompanyDataFromSwagger(String isin){
+        Map<String, Object> swagggerObject = swaggerFeignClient.getObject(isin);
+        System.out.println(swagggerObject);
+        return swagggerObject;
+    }
+
+    public boolean checkWknDuplicate(String wkn){
+        return companyRepository.existsByWkn(wkn);
     }
 }

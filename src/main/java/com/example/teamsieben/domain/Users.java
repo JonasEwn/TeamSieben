@@ -2,6 +2,8 @@ package com.example.teamsieben.domain;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class Users {
@@ -48,4 +50,5 @@ public class Users {
     public void setName(String name) {
         this.name = name;
     }
+
 }

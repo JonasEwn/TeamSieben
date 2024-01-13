@@ -2,12 +2,12 @@ package com.example.teamsieben.web;
 
 import com.example.teamsieben.domain.Item;
 //import com.example.teamsieben.persistence.ItemProjection;
-import com.example.teamsieben.persistence.ItemProjection;
-import com.example.teamsieben.persistence.SameWknProjection;
 import com.example.teamsieben.service.ItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/portfolio")
@@ -59,24 +59,24 @@ public class ItemController {
     public ResponseEntity<Double> averageCost(@PathVariable String wkn){
         Double cost = itemService.averageCost(wkn);
 
-        return new ResponseEntity<Double>(cost, HttpStatus.OK);
+        return new ResponseEntity<>(cost, HttpStatus.OK);
     }
 
     @GetMapping("/total/{wkn}")
     public ResponseEntity<Double> totalCost(@PathVariable String wkn){
         Double total = itemService.totalCost(wkn);
-        return new ResponseEntity<Double>(total, HttpStatus.OK);
+        return new ResponseEntity<>(total, HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Iterable<ItemProjection>> allOutput(){
-        Iterable<ItemProjection> total = itemService.allOutput();
+    public ResponseEntity<Iterable<Map<String, Object>>> allOutput(){
+        Iterable<Map<String, Object>> total = itemService.allOutput();
         return new ResponseEntity<>(total, HttpStatus.OK);
     }
 
     @GetMapping("/all/{wkn}")
-    public ResponseEntity<Iterable<SameWknProjection>> itemsWithSameWkn(@PathVariable String wkn){
-        Iterable<SameWknProjection> items = itemService.itemsWithSameWkn(wkn);
+    public ResponseEntity<Iterable<Map<String, Object>>> itemsWithSameWkn(@PathVariable String wkn){
+        Iterable<Map<String, Object>> items = itemService.itemsWithSameWkn(wkn);
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
     //------------------------------------------

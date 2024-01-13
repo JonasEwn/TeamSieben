@@ -22,7 +22,7 @@ export class AppComponent {
     },
     {
       name: 'User List',
-      routePath: 'message-list',
+      routePath: 'swagger',
       visible: this.auth.isAuthenticated$(),
     },
     {

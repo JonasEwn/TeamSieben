@@ -2,6 +2,7 @@ package com.example.teamsieben.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Role;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -9,9 +10,15 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+
+import static org.springframework.security.config.Customizer.withDefaults;
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -26,22 +33,23 @@ public class BasicAuthenticationConfiguration implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         AntPathRequestMatcher h2ConsoleRequestMatcher = new AntPathRequestMatcher("/h2-Console");
         httpSecurity
-                .csrf().disable()
+                .csrf(AbstractHttpConfigurer::disable)
                 /*.csrf(httpSecurityCsrfConfigurer ->
                         httpSecurityCsrfConfigurer
                                 .ignoringRequestMatchers(h2ConsoleRequestMatcher))*/
                 .authorizeHttpRequests(request ->
                         request
-                                .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
+                                .requestMatchers(antMatcher("/**")).authenticated()
                 )
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(withDefaults());
+                httpSecurity.cors(withDefaults());
         return httpSecurity.build();
     }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200") // Add your Angular app's URL
+                .allowedOrigins("http://localhost:4200", "https://hsaa-stock-exchange-service.azurewebsites.net/v1/stocks")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true);

@@ -1,12 +1,13 @@
 package com.example.teamsieben.web;
 
 import com.example.teamsieben.domain.Company;
-import com.example.teamsieben.domain.Item;
-import com.example.teamsieben.persistence.GeneralInfoProjection;
+import com.example.teamsieben.persistence.SwaggerFeignClient;
 import com.example.teamsieben.service.CompanyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/companies")
@@ -54,8 +55,8 @@ public class CompanyController {
     }
 
     @GetMapping("/info/{wkn}")
-    public ResponseEntity<Iterable<GeneralInfoProjection>> generalInfo(@PathVariable String wkn){
-        Iterable<GeneralInfoProjection> info = companyService.generalInfo(wkn);
+    public ResponseEntity<Iterable<Map<String, Object>>> generalInfo(@PathVariable String wkn){
+        Iterable<Map<String, Object>> info = companyService.generalInfo(wkn);
         return new ResponseEntity<>(info, HttpStatus.OK);
     }
 
@@ -63,5 +64,23 @@ public class CompanyController {
     public ResponseEntity<Company> getCompanyByWkn(@PathVariable String wkn){
         Company info = companyService.getCompanyByWkn(wkn);
         return new ResponseEntity<>(info, HttpStatus.OK);
+    }
+
+
+
+    @GetMapping("/swagger/{isin}")
+    public ResponseEntity<Map<String, Object>> getCompanyDataFromSwagger(@PathVariable String isin){
+        Map<String, Object> company = companyService.getCompanyDataFromSwagger(isin);
+        if(company == null || company.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(company, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/duplicate/{wkn}")
+    public ResponseEntity<Boolean> checkWknDuplicate(@PathVariable String wkn){
+        boolean wknDuplicate = companyService.checkWknDuplicate(wkn);
+        return new ResponseEntity<>(wknDuplicate, HttpStatus.OK);
     }
 }

@@ -1,12 +1,13 @@
 package com.example.teamsieben.service;
 
 import com.example.teamsieben.domain.Item;
-import com.example.teamsieben.persistence.ItemProjection;
 import com.example.teamsieben.persistence.ItemRepository;
 //import com.example.teamsieben.persistence.ItemProjection;
-import com.example.teamsieben.persistence.SameWknProjection;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -79,13 +80,13 @@ public class ItemService {
         return total;
     }
 
-    public Iterable<ItemProjection> allOutput(){
-        Iterable<ItemProjection> all = itemRepository.allPricesAndAmounts();
+    public Iterable<Map<String, Object>> allOutput(){
+        Iterable<Map<String, Object>> all = itemRepository.allPricesAndAmounts();
         return all;
     }
 
-    public Iterable<SameWknProjection> itemsWithSameWkn(String wkn){
-        Iterable<SameWknProjection> itemsWithSameWkn = itemRepository.itemsWithSameWkn(wkn);
+    public Iterable<Map<String, Object>> itemsWithSameWkn(String wkn){
+        Iterable<Map<String, Object>> itemsWithSameWkn = itemRepository.itemsWithSameWkn(wkn);
         return itemsWithSameWkn;
     }
 

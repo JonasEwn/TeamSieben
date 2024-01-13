@@ -1,16 +1,14 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { MatDialogModule } from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import {PortfolioItems} from "../../models/portfolioItems";
-import {PortfolioCompanies} from "../../models/portfolioCompanies";
-import {PortfolioItemsService} from "../../services/http/portfolioItems.service";
-import {PortfolioCompaniesService} from "../../services/http/portfolioCompanies.service";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
 import {Router} from "@angular/router";
 import {OverviewComponent} from "../../../views/overview/overview.component";
+import {HttpClient} from "@angular/common/http";
+import {CdkTableModule} from "@angular/cdk/table";
 
 
 // This component is used to add a new item to the list.
@@ -27,73 +25,116 @@ import {OverviewComponent} from "../../../views/overview/overview.component";
     MatInputModule,
     ReactiveFormsModule,
     CommonModule,
+    CdkTableModule,
   ],
   templateUrl: './add-item-dialog.component.html',
   styleUrl: './add-item-dialog.component.scss',
 })
 export class AddItemDialogComponent {
 
-  itemData: PortfolioItems[] = [];
-  companyData: PortfolioCompanies[] = [];
   currentDate = new Date();
-  postError: String | null = null;  // Für WKN error hinzugefügt
+  isinError = false;
+  wknDuplicate = false;
+  showCompanyInfo = false;
 
 
   @Output() formSubmit = new EventEmitter;
   myForm: FormGroup;
 
+  mySecondForm: FormGroup;
+
   constructor(private fb: FormBuilder,
-              private itemService: PortfolioItemsService,
-              private comapaniesService: PortfolioCompaniesService,
+              private httpClient: HttpClient,
               private router: Router) {
     this.myForm = this.fb.group({
-      wkn: ['', Validators.required],
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      category: ['', Validators.required],
-      quantity: ['', Validators.required],
-      price: ['', Validators.required]
+      isin: ['', Validators.required],
+    });
+
+    this.mySecondForm = this.fb.group({
+      wkn: [{value: '', disabled: true}],
+      description: [{value: '', disabled: true}],
+      name: [{value: '', disabled: true}],
+      category: [{value: '', disabled: true}],
+      price: [{value: '', disabled: true}],
+      quantity: ['', Validators.required]
+    })
+  }
+
+  checkIsin(){
+    const isin = this.myForm.get('isin')?.value;
+    console.log("Checking ISIN: ", isin);
+    this.httpClient.get<any>(`http://localhost:8080/companies/swagger/${isin}`, {observe: 'response'}).subscribe({
+      complete: () => {
+        this.checkWknDuplicate(isin)
+      },
+      error: () => {
+        this.isinError = true;
+        console.error("ISIN was not found or does not exist!")
+      },
+      next: (data) => {
+        console.log(data.body)
+        this.mySecondForm.setValue({
+          wkn: data.body.isin,
+          description: data.body.description,
+          name: data.body.name,
+          category: data.body.type,
+          price: data.body.price,
+          quantity: null
+        })
+      }
     });
   }
 
+
   onSubmit(){
-    console.log(this.myForm.value);
-    const formData = this.myForm.value;
-    this.itemData = [{
-      wkn: formData.wkn,
-      purchasePrice: formData.price,
-      quantity: formData.quantity,
+
+    const itemData = {
+      wkn: this.mySecondForm.get('wkn')?.value,
+      purchasePrice: this.mySecondForm.get('price')?.value,
+      quantity: this.mySecondForm.get('quantity')?.value,
       purchaseDate: this.currentDate,
-    }];
-    console.log(this.itemData);
+    };
+    console.log(itemData);
 
-    this.companyData = [{
-      wkn: formData.wkn,
-      name: formData.name,
-      description: formData.description,
-      category: formData.category,
-    }];
-    console.log(this.companyData);
+    let companyData = {
+      wkn: this.mySecondForm.get('wkn')?.value,
+      name: this.mySecondForm.get('name')?.value,
+      description: this.mySecondForm.get('description')?.value,
+      category: this.mySecondForm.get('category')?.value
+    };
+    console.log(companyData);
 
-    this.comapaniesService.sendData(this.companyData).subscribe(
-      (response) => {
-        // Handle success here
-        this.itemService.sendData(this.itemData).subscribe();
-        this.router.navigate([OverviewComponent]);
-        window.location.reload();
-        this.postError = null;
+    this.httpClient.post('http://localhost:8080/companies', companyData).subscribe({
+      complete:() => {
+        this.httpClient.post('http://localhost:8080/portfolio', itemData).subscribe({
+          complete: () => {
+            this.router.navigate([OverviewComponent]);
+            window.location.reload();
+          },
+          error: err => {
+            console.error("Buying item did not work! \n Grund: ", err)
+          }
+        })
       },
-      (error) => {  // Für WKN Error hinzugefügt
-        // Handle error here
-        console.error('Custom POST request failed:', error);
-        this.postError = error.message || "WKN existiert bereits";
+      error: err => {
+        console.error("Creat Company did not work! \n Grund: ", err)
       }
-    );
+    });
   }
 
-  // Für WKN Error hinzugefügt
-  hasError(controlName: string): boolean {
-    const control = this.myForm.get(controlName);
-    return !!((control && (control.dirty || control.touched) && control.invalid) || this.postError);
+  checkWknDuplicate(isin: String) {
+    this.httpClient.get<boolean>(`http://localhost:8080/companies/duplicate/${isin}`).subscribe({
+      next: duplicate => {
+        this.wknDuplicate = duplicate
+        console.log("Duplicate? ", duplicate)
+
+        this.isinError = false;
+
+        console.log("%c Status okay", 'color: #19bf13')
+        if (!duplicate) {
+          this.showCompanyInfo = true
+        }
+      }
+    });
   }
 }

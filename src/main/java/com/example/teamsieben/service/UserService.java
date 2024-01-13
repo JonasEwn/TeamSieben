@@ -13,10 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -64,13 +62,13 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users user = userRepository.findByUsername(username);
         if(user != null){
-            return new User(user.getUsername(), user.getPassword(), getName(user.getName()));
+            return new User(user.getUsername(), user.getPassword(), getNameAndRole(user.getName()));
         } else {
             throw new UsernameNotFoundException("Username not found");
         }
     }
 
-    private List<GrantedAuthority> getName(String name) {
+    private List<GrantedAuthority> getNameAndRole(String name) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(name));
         return authorities;

@@ -1,37 +1,46 @@
-<!-- form-field.component.html -->
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <mat-label>Wkn</mat-label>
-    <input [ngClass]="{'error-input': hasError('wkn') || postError}" matInput formControlName="wkn" required>
-    <div *ngIf="postError" class="server-error">WKN existiert bereits!</div>
-  </mat-form-field>
+<div *ngIf="!showCompanyInfo" class="form-container">
+  <form class="check isin" [formGroup]="myForm" (ngSubmit)="checkIsin()">
+    <mat-form-field>
+      <mat-label>ISIN</mat-label>
+      <input [ngClass]="{'error-message': isinError} || {'error-message': wknDuplicate}" matInput formControlName="isin">
+    </mat-form-field>
+    <div *ngIf="isinError" class="isin-error"><b>ISIN nicht gefunden!</b></div>
+    <div *ngIf="wknDuplicate" class="isin-error"><b>ISIN/WKN existiert bereits!</b></div>
+    <button mat-raised-button type="submit" color="primary" [disabled]="myForm.invalid">Check ISIN</button>
+  </form>
+</div>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Name</mat-label>
-    <input matInput formControlName="name">
-  </mat-form-field>
+<div *ngIf="showCompanyInfo" class="form-container">
+  <form class="check-company" [formGroup]="mySecondForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>ISIN/WKN</mat-label>
+      <input matInput formControlName="wkn">
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Beschreibung</mat-label>
-    <input matInput formControlName="description" required>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <textarea matInput formControlName="name"></textarea>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Kategorie</mat-label>
-    <input matInput formControlName="category" required>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Kategorie</mat-label>
+      <input matInput formControlName="category">
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Anzahl</mat-label>
-    <input type="number" matInput formControlName="quantity" required>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Preis (€)</mat-label>
-    <input type="number" matInput formControlName="price" required>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Preis (€)</mat-label>
+      <input matInput formControlName="price">
+    </mat-form-field>
 
-  <button mat-raised-button type="submit" [disabled]="myForm.invalid" [ngClass]="{'submit-button' : myForm.valid}">
-    Submit
-  </button>
-</form>
+    <mat-form-field>
+      <mat-label>Anzahl</mat-label>
+      <input type="number" matInput formControlName="quantity">
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="accent" [disabled]="mySecondForm.invalid">Submit</button>
+  </form>
+</div>

@@ -1,23 +1,29 @@
-form {
-  width: 450px;
-  margin: auto;
+/* Adjustments to styles */
+
+.form-container {
+  min-width: 450px;
+  max-width: 450px;
+  margin: 0 auto;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  padding: 10px;
 }
 
 mat-form-field {
   width: 100%;
-  height: 100%;
+  box-sizing: border-box;
+  white-space: break-spaces;
+  word-wrap: normal;
 }
 
-button {
-  margin-right: 10px;
-  color: #d41919;
+.isin-error {
+  color: #d92121;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-.submit-button{
-  background-color: whitesmoke;
-}
-
-// Für WKN Error hinzugefügt
-.server-error{
-  color: #d41919;
+textarea{
+  resize: none;
+  height: auto;
 }
