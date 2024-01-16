@@ -33,14 +33,22 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Preis (€)</mat-label>
+      <mat-label>Preis</mat-label>
       <input matInput formControlName="price">
+      <span matTextPrefix class="prefix" aria-disabled="true">€&nbsp;</span>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Anzahl</mat-label>
       <input type="number" matInput formControlName="quantity">
     </mat-form-field>
+
+    <mat-form-field class="total">
+      <mat-label>Gesamtpreis</mat-label>
+      <input type="number" matInput [value]="calculateTotal()" disabled>
+      <span matTextPrefix class="prefix" aria-disabled="true">€&nbsp;</span>
+    </mat-form-field>
+
     <button mat-raised-button type="submit" color="accent" [disabled]="mySecondForm.invalid">Submit</button>
   </form>
 </div>

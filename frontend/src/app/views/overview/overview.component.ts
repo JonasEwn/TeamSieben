@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Overview} from "../../shared/models/overview";
-import {OverviewService} from "../../shared/services/http/overview.service";
 import {Router} from "@angular/router";
 import {AddItemDialogComponent} from "../../shared/components/add-item-dialog/add-item-dialog.component";
 import {BuyItemDialogComponent} from "../../shared/components/buy-item-dialog/buy-item-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-overview', // Definiert den Selektor für die Komponente
@@ -13,17 +12,27 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class OverviewComponent implements OnInit {// Deklariert eine Referenz zum MatPaginator und MatSort
 
-  all: Overview[] = [];
+  all: any = [];
+  currentPrices: any = [];
   displayedColumns: string[] = ['wkn', 'name', 'quantity','average', 'total', 'buy'];
-  constructor(private allCompaniesService: OverviewService,
-              private router: Router,
+  constructor(private router: Router,
+              private httpClient: HttpClient,
               public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.allCompaniesService.getData().subscribe(data =>{
-      this.all = data
-    });
+    this.httpClient.get('http://localhost:8080/portfolio/all').subscribe(
+      data => {
+        this.all = data
+      }
+    )
+
+    this.httpClient.get('http://localhost:8080/companies/prices').subscribe(
+      data => {
+        this.currentPrices = data;
+        console.log(data)
+      }
+    )
   }
 
   details(wkn: string){

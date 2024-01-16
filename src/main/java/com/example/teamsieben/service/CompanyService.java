@@ -1,17 +1,14 @@
 package com.example.teamsieben.service;
 
 import com.example.teamsieben.domain.Company;
+import com.example.teamsieben.domain.Item;
 import com.example.teamsieben.persistence.CompanyRepository;
 import com.example.teamsieben.persistence.SwaggerFeignClient;
-import com.fasterxml.jackson.databind.JsonNode;
-import feign.Request;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class CompanyService {
@@ -19,6 +16,7 @@ public class CompanyService {
     private final CompanyRepository companyRepository;
 
     private final SwaggerFeignClient swaggerFeignClient;
+
 
     public CompanyService(CompanyRepository companyRepository, SwaggerFeignClient swaggerFeignClient) {
         this.companyRepository = companyRepository;
@@ -55,6 +53,7 @@ public class CompanyService {
 
     public Company addNewCompany(Company company){
         if(isInputValid(company.getDescription())){
+
             return saveCompany(company);
         }
         else {
@@ -90,4 +89,21 @@ public class CompanyService {
     public boolean checkWknDuplicate(String wkn){
         return companyRepository.existsByWkn(wkn);
     }
+
+
+    public Iterable<Map<String, Object>> setPriceAndReturnData(){
+        List<String> wkns = companyRepository.allWkns();
+        for (int i = 0; i <= wkns.size() - 1; i++){
+            String wkn = wkns.get(i);
+            int price = (int) getCompanyDataFromSwagger(wkn).get("price");
+
+            Company company = getCompanyByWkn(wkn);
+
+            company.setPrice(price);
+            saveCompany(company);
+        }
+        Iterable<Map<String, Object>> getWknNameQuantityPrice = companyRepository.getWknNameQuantityPrice();
+        return getWknNameQuantityPrice;
+    }
+
 }

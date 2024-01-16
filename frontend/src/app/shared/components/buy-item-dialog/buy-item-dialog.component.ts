@@ -19,7 +19,7 @@ import {PortfolioItemsService} from "../../services/http/portfolioItems.service"
 export class BuyItemDialogComponent implements OnInit{
 
   myForm: FormGroup;
-  itemData: PortfolioItems[] = [];
+  itemData: object = [];
   currentDate = new Date();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
@@ -32,8 +32,8 @@ export class BuyItemDialogComponent implements OnInit{
       name: [{value: '' , disabled: true}],
       description: [{value: '', disabled: true}],
       category: [{value: '', disabled: true}],
-      quantity: ['', Validators.required],
-      price: ['', Validators.required]
+      price: [{value: null, disabled:true}],
+      quantity: ['', Validators.required]
     });
 
     console.log('Wkn wird übergeben: ', this.data.wkn);
@@ -49,21 +49,32 @@ export class BuyItemDialogComponent implements OnInit{
           category: data.category,
         })
       });
+    this.httpClient.get<any>(`http://localhost:8080/companies/swagger/${this.data.wkn}`, {observe: "body"}).subscribe(
+      data => {
+        this.myForm?.patchValue({
+          price: data.price
+        })
+      }
+    )
 
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.myForm.value);
     const formData = this.myForm.value;
 
-    this.itemData = [{
+    this.itemData = {
       wkn: this.data.wkn,
-      purchasePrice: formData.price,
+      purchasePrice: this.myForm.get('price')?.value,
       quantity: formData.quantity,
       purchaseDate: this.currentDate,
-    }];
-    this.itemService.sendData(this.itemData).subscribe();
+    };
+    console.log(this.itemData)
+    this.httpClient.post('http://localhost:8080/portfolio', this.itemData).subscribe()
     window.location.reload();
   }
 
+  calculateTotal(){
+    return this.myForm.get('quantity')?.value * this.myForm.get('price')?.value
+  }
 }

@@ -1,17 +1,22 @@
-form {
-  width: 800px;
-  margin: auto;
+
+.form-container {
+  min-width: 450px;
+  max-width: 450px;
+  margin: 0 auto;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  padding: 10px;
 }
 
 mat-form-field {
   width: 100%;
 }
 
-button {
-  margin-top: 16px;
-}
-
 // Für WKN Error hinzugefügt
 .server-error{
   color: #d41919;
+}
+
+.prefix{
+  color: grey;
 }

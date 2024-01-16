@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query("SELECT id, quantity, purchaseDate, purchasePrice, wkn FROM Item ")
@@ -31,6 +32,10 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
 
     @Query("Select quantity as quantity, purchaseDate as purchaseDate, purchasePrice as purchasePrice, ((CAST(quantity AS DOUBLE)) * purchasePrice) as totalPrice FROM Item WHERE wkn = ?1")
     Iterable<Map<String, Object>> itemsWithSameWkn(String wkn);
+
+    @Query("SELECT c.wkn as wkn, SUM(i.quantity) as quantity, c.name as name FROM Item i JOIN Company c ON i.wkn = c.wkn GROUP BY i.wkn")
+    List<Map<String, Object>> wknNameQuantity();
+
     //----------------------------------------------------
     /*
     SELECT item.wkn, company.name, sum(item.quantity) as quantity, sum(CAST(item.quantity AS DOUBLE) * item.purchase_Price) AS total

@@ -56,7 +56,8 @@ export class AddItemDialogComponent {
       name: [{value: '', disabled: true}],
       category: [{value: '', disabled: true}],
       price: [{value: '', disabled: true}],
-      quantity: ['', Validators.required]
+      quantity: ['', Validators.required],
+      //total: [{value: '', disabled: true}]
     })
   }
 
@@ -136,5 +137,9 @@ export class AddItemDialogComponent {
         }
       }
     });
+  }
+
+  calculateTotal(){
+    return this.mySecondForm.get('quantity')?.value * this.mySecondForm.get('price')?.value
   }
 }

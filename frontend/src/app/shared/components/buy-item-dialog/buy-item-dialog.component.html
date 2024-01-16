@@ -1,4 +1,47 @@
-<!-- form-field.component.html -->
+
+<div class="form-container">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>WKN/ISIN</mat-label>
+      <input matInput formControlName="wkn">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Beschreibung</mat-label>
+      <input matInput formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Kategorie</mat-label>
+      <input matInput formControlName="category">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Preis</mat-label>
+      <input matInput formControlName="price">
+      <span matTextPrefix class="prefix" aria-disabled="true">€&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Anzahl</mat-label>
+      <input type="number" matInput formControlName="quantity" required>
+    </mat-form-field>
+
+    <mat-form-field class="total">
+      <mat-label>Gesamtpreis</mat-label>
+      <input type="number" matInput [value]="calculateTotal()" disabled>
+      <span matTextPrefix class="prefix" aria-disabled="true">€&nbsp;</span>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="accent" [disabled]="myForm.invalid">Submit</button>
+  </form>
+</div>
+<!-- form-field.component.html
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Wkn</mat-label>
@@ -32,3 +75,4 @@
 
   <button mat-raised-button type="submit" [disabled]="myForm.invalid">Submit</button>
 </form>
+-->

@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/companies")
@@ -82,5 +82,11 @@ public class CompanyController {
     public ResponseEntity<Boolean> checkWknDuplicate(@PathVariable String wkn){
         boolean wknDuplicate = companyService.checkWknDuplicate(wkn);
         return new ResponseEntity<>(wknDuplicate, HttpStatus.OK);
+    }
+
+    @GetMapping("/prices")
+    public ResponseEntity<Iterable<Map<String, Object>>> getWknNameQuantityPrice(){
+        Iterable<Map<String, Object>> allWknNameQuantityPrices = companyService.setPriceAndReturnData();
+        return new ResponseEntity<>(allWknNameQuantityPrices, HttpStatus.OK);
     }
 }

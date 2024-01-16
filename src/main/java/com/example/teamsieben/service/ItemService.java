@@ -3,20 +3,22 @@ package com.example.teamsieben.service;
 import com.example.teamsieben.domain.Item;
 import com.example.teamsieben.persistence.ItemRepository;
 //import com.example.teamsieben.persistence.ItemProjection;
+import com.example.teamsieben.persistence.SwaggerFeignClient;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.math.BigDecimal;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final CompanyService companyService;
 
-    public ItemService(ItemRepository itemRepository) {
+    public ItemService(ItemRepository itemRepository, CompanyService companyService) {
         this.itemRepository = itemRepository;
+        this.companyService = companyService;
     }
 
     public Item saveItem(Item item) {

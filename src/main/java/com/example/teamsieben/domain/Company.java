@@ -1,5 +1,6 @@
 package com.example.teamsieben.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,6 +19,9 @@ public class Company {
     private String description;
 
     private String category;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private int price;
 
     public Company(){
         // Standard-Konstruktor
@@ -69,5 +73,13 @@ public class Company {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

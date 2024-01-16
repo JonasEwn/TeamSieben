@@ -1,11 +1,15 @@
 package com.example.teamsieben.persistence;
 
 import com.example.teamsieben.domain.Company;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface CompanyRepository extends CrudRepository<Company, Long> {
 
@@ -16,5 +20,12 @@ public interface CompanyRepository extends CrudRepository<Company, Long> {
     boolean existsByWkn(String wkn);
 
     Company getCompanyByWkn(String wkn);
+
+    @Query("SELECT wkn FROM Company")
+    List<String> allWkns();
+
+    @Query("SELECT c.wkn as wkn, c.name as name, c.price as price, SUM(i.quantity) as quantity FROM Company c JOIN Item i ON c.wkn = i.wkn GROUP BY c.wkn")
+    Iterable<Map<String, Object>> getWknNameQuantityPrice();
+
 
 }
