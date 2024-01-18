@@ -11,8 +11,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
 
 public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query("SELECT id, quantity, purchaseDate, purchasePrice, wkn FROM Item ")
@@ -36,6 +34,8 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query("SELECT c.wkn as wkn, SUM(i.quantity) as quantity, c.name as name FROM Item i JOIN Company c ON i.wkn = c.wkn GROUP BY i.wkn")
     List<Map<String, Object>> wknNameQuantity();
 
+    @Query("SELECT c.wkn as wkn, c.name as name, c.category as category, c.description as description, c.price as price, SUM(i.quantity) as quantity, SUM(i.quantity * CAST(i.purchasePrice as Double)) / SUM(i.quantity) as averagePrice FROM Company c JOIN Item i on c.wkn = i.wkn WHERE c.wkn = ?1 GROUP BY c.wkn ")
+    Details details(String wkn);
     //----------------------------------------------------
     /*
     SELECT item.wkn, company.name, sum(item.quantity) as quantity, sum(CAST(item.quantity AS DOUBLE) * item.purchase_Price) AS total

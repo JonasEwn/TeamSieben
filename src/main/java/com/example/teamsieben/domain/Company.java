@@ -27,12 +27,13 @@ public class Company {
         // Standard-Konstruktor
     }
 
-    public Company(Long id, String wkn, String name, String description, String category) {
+    public Company(Long id, String wkn, String name, String description, String category, int price) {
         this.id = id;
         this.wkn = wkn;
         this.name = name;
         this.description = description;
         this.category = category;
+        this.price = price;
     }
 
     public Long getId() {

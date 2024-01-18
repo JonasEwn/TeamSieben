@@ -13,23 +13,16 @@ import {HttpClient} from "@angular/common/http";
 export class OverviewComponent implements OnInit {// Deklariert eine Referenz zum MatPaginator und MatSort
 
   all: any = [];
-  currentPrices: any = [];
-  displayedColumns: string[] = ['wkn', 'name', 'quantity','average', 'total', 'buy'];
+  displayedColumns: string[] = ['wkn', 'name', 'quantity','profitloss', 'total', 'buy'];
   constructor(private router: Router,
               private httpClient: HttpClient,
               public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.httpClient.get('http://localhost:8080/portfolio/all').subscribe(
-      data => {
-        this.all = data
-      }
-    )
-
     this.httpClient.get('http://localhost:8080/companies/prices').subscribe(
       data => {
-        this.currentPrices = data;
+        this.all = data;
         console.log(data)
       }
     )

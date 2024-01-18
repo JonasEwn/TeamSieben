@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {DetailsService} from "../../shared/services/http/details.service";
 import {Details} from "../../shared/models/details";
 import {GeneralInfo} from "../../shared/models/generalInfo";
-import {GeneralInfoService} from "../../shared/services/http/generalInfo.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-detail',
@@ -17,22 +17,25 @@ export class DetailComponent implements OnInit{
   displayedColumns: String[] = ['purchaseDate', 'quantity', 'purchasePrice', 'totalPrice'];
 
   generalInfos: GeneralInfo[] = [];
+  generalInfoTest: any = [];
 
   constructor(private route: ActivatedRoute,
               private detailsService: DetailsService,
-              private generalInfoService: GeneralInfoService) {
+              private httpClient: HttpClient) {
   }
 
   ngOnInit() {
     const wkn = this.route.snapshot.paramMap.get('wkn');
-    console.log("Detail von WKN:", wkn);
+    console.log("Detail von WKN:", wkn, " Preis:", wkn);
+
+    this.httpClient.get(`http://localhost:8080/portfolio/details/${wkn}`).subscribe(data => {
+      this.generalInfoTest = data
+    });
 
     this.detailsService.getData(wkn).subscribe(data => {
       this.items = data
     });
 
-    this.generalInfoService.getData(wkn).subscribe(infoData => {
-        this.generalInfos = infoData
-    });
   }
+
 }

@@ -1,14 +1,12 @@
 package com.example.teamsieben.service;
 
 import com.example.teamsieben.domain.Item;
+import com.example.teamsieben.persistence.Details;
 import com.example.teamsieben.persistence.ItemRepository;
 //import com.example.teamsieben.persistence.ItemProjection;
-import com.example.teamsieben.persistence.SwaggerFeignClient;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
@@ -92,6 +90,11 @@ public class ItemService {
         return itemsWithSameWkn;
     }
 
+    public Details details(String wkn){
+        int price = (int) companyService.getCompanyDataFromSwagger(wkn).get("price");
+        Details details = itemRepository.details(wkn);
+        return details;
+    }
     // -------------------------------------------------
     // -------------------------------------------------
 }

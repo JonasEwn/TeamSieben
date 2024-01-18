@@ -1,27 +1,36 @@
 <div class="infos">
-  <div class="linke-info" *ngIf="generalInfos && generalInfos.length > 0">
+  <div class="linke-info">
     <div class="linke-bezeichnung">
       <p>WKN:</p>
       <p>Name:</p>
       <p>Kategorie:</p>
     </div>
     <div class="linke-werte">
-      <p *ngIf="generalInfos"><b>{{ generalInfos[0].wkn }}</b></p>
-      <p *ngIf="generalInfos"><b>{{ generalInfos[0].name }}</b></p>
-      <p *ngIf="generalInfos"><b>{{ generalInfos[0].category }}</b></p>
+      <p *ngIf="generalInfos"><b>{{ generalInfoTest.wkn }}</b></p>
+      <p *ngIf="generalInfos"><b>{{ generalInfoTest.name }}</b></p>
+      <p *ngIf="generalInfos"><b>{{ generalInfoTest.category }}</b></p>
     </div>
   </div>
-  <div class="rechte-info" *ngIf="generalInfos && generalInfos.length > 0">
+  <div class="rechte-info">
     <div class="rechte-bezeichnung">
       <p>Gesamtzahl:</p>
-      <p>durchschnittlicher Preis:</p>
       <p>Beschreibung:</p>
     </div>
     <div class="rechte-werte">
-      <p *ngIf="generalInfos"><b>{{ generalInfos[0].totalQuantity }}</b></p>
-      <p *ngIf="generalInfos"><b>{{ generalInfos[0].averagePurchasePrice.toFixed(2) }} €</b></p>
-      <p *ngIf="generalInfos"><b>{{ generalInfos[0].description }}</b></p>
+      <p *ngIf="generalInfos"><b>{{ generalInfoTest.quantity }}</b></p>
+      <p *ngIf="generalInfos"><b>{{ generalInfoTest.description }}</b></p>
     </div>
+  </div>
+  <div class="info-unten">
+    <p>
+      Kaufpreis Durchschnitt: {{ generalInfoTest.averagePrice?.toFixed(2) }} €
+      <br>
+      Aktueller Kurs: {{ generalInfoTest.price }} €
+      <br>
+      Gewinn / Verlust pro Aktie: {{ (generalInfoTest.price - generalInfoTest.averagePrice).toFixed(2) }} €
+      <br>
+      Gewinn / Verlust Gesamt: {{ (generalInfoTest.price * generalInfoTest.quantity) - (generalInfoTest.averagePrice * generalInfoTest.quantity) }} €
+    </p>
   </div>
 </div>
 

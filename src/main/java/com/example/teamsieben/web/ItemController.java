@@ -2,12 +2,12 @@ package com.example.teamsieben.web;
 
 import com.example.teamsieben.domain.Item;
 //import com.example.teamsieben.persistence.ItemProjection;
+import com.example.teamsieben.persistence.Details;
 import com.example.teamsieben.service.ItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -79,6 +79,12 @@ public class ItemController {
     public ResponseEntity<Iterable<Map<String, Object>>> itemsWithSameWkn(@PathVariable String wkn){
         Iterable<Map<String, Object>> items = itemService.itemsWithSameWkn(wkn);
         return new ResponseEntity<>(items, HttpStatus.OK);
+    }
+
+    @GetMapping("/details/{wkn}")
+    public ResponseEntity<Details> details(@PathVariable String wkn){
+        Details details = itemService.details(wkn);
+        return new ResponseEntity<>(details, HttpStatus.OK);
     }
     //------------------------------------------
 }

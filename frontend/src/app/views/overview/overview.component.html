@@ -24,14 +24,14 @@
         <td mat-cell *matCellDef="let row">{{ row.quantity }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="average">
-        <th mat-header-cell *matHeaderCellDef>Gewinn / Verlust</th>
-        <td mat-cell *matCellDef="let row">{{ row.average }} €</td>
+      <ng-container matColumnDef="profitloss">
+        <th mat-header-cell *matHeaderCellDef>Gewinn / <span [style.color]="'red'">Verlust</span></th>
+        <td mat-cell *matCellDef="let row" [style.color]="((row.price * row.quantity) - row.purchaseTotal) < 0 ? 'red' : 'black'">{{ (row.price * row.quantity) - row.purchaseTotal }} €</td>
       </ng-container>
 
       <ng-container matColumnDef="total">
         <th mat-header-cell *matHeaderCellDef>Aktueller Gesamtpreis</th>
-        <td mat-cell *matCellDef="let row">{{ row.total }} €</td>
+        <td mat-cell *matCellDef="let row">{{ row.price * row.quantity }} €</td>
       </ng-container>
 
       <ng-container matColumnDef="buy">

@@ -21,6 +21,8 @@ import { AuthInterceptorService } from './shared/auth-core/auth-interceptor.serv
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './views/logout/logout.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatInputModule} from "@angular/material/input";
+import {MatCardModule} from "@angular/material/card";
 // This module is more or less the core-module of the application.
 // In this case such a module is needed to declare the used components and all relevant modules at once.
 // In difference to the AppModule you else could use the Standalone-components.
@@ -49,7 +51,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatInputModule,
+    MatCardModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
