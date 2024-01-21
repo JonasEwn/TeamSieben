@@ -91,7 +91,7 @@ public class ItemService {
     }
 
     public Details details(String wkn){
-        int price = (int) companyService.getCompanyDataFromSwagger(wkn).get("price");
+        companyService.setPrice(wkn);
         Details details = itemRepository.details(wkn);
         return details;
     }

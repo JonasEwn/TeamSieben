@@ -19,9 +19,8 @@ public class LikeController {
         this.likeService = likeService;
     }
 
-    @GetMapping
-    public ResponseEntity<Iterable<Likes>> getLike(@RequestBody Map<String, Object> data){
-        String username = (String) data.get("username");
+    @GetMapping("/{username}")
+    public ResponseEntity<Iterable<Likes>> getLike(@PathVariable String username){
         Iterable<Likes> likes = likeService.getLike(username);
         return new ResponseEntity<>(likes, HttpStatus.OK);
     }

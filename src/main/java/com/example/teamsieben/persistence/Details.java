@@ -8,8 +8,9 @@ public interface Details {
     String getName();
     String getCategory();
     String getDescription();
-    String getPrice();
+    int getPrice();
     int getQuantity();
     double getAveragePrice();
+
 
 }

@@ -106,4 +106,11 @@ public class CompanyService {
         return getWknNameQuantityPrice;
     }
 
+    public void setPrice(String wkn){
+        int price = (int) getCompanyDataFromSwagger(wkn).get("price");
+        Company company = getCompanyByWkn(wkn);
+        company.setPrice(price);
+        saveCompany(company);
+    }
+
 }

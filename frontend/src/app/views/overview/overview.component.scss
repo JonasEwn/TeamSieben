@@ -1,3 +1,5 @@
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
 :host {
   padding-left: 8px;
 }
@@ -51,4 +53,9 @@ th {
 
 .item-kaufen-button{
   position: relative;
+}
+
+.Heart-Button{
+  position: relative;
+  margin-left: 10px;
 }
