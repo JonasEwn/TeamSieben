@@ -21,8 +21,8 @@ export class AppComponent {
       visible: this.auth.isAuthenticated$(),
     },
     {
-      name: 'User List',
-      routePath: 'swagger',
+      name: 'Favorites',
+      routePath: 'likes',
       visible: this.auth.isAuthenticated$(),
     },
     {

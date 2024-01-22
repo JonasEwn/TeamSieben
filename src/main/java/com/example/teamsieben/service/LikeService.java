@@ -6,13 +6,19 @@ import com.example.teamsieben.domain.Users;
 import com.example.teamsieben.persistence.LikeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class LikeService {
 
     private final LikeRepository likeRepository;
 
-    public LikeService(LikeRepository likeRepository) {
+    private final CompanyService companyService;
+
+    public LikeService(LikeRepository likeRepository, CompanyService companyService) {
         this.likeRepository = likeRepository;
+        this.companyService = companyService;
     }
 
     public Likes addLike(String wkn, String username) {
@@ -33,5 +39,27 @@ public class LikeService {
     public Iterable<Likes> getLike(String username){
         Iterable<Likes> like = likeRepository.getLikesByUsersUsername(username);
         return like;
+    }
+
+    public Iterable<Map<String, Object>>  likedCompanies(String username){
+        List<String> wkns = likeRepository.getAllWkns();
+        for (int i = 0; i <= wkns.size() - 1; i++){
+            String wkn = wkns.get(i);
+            int price = (int) companyService.getCompanyDataFromSwagger(wkn).get("price");
+
+            Company company = companyService.getCompanyByWkn(wkn);
+
+            company.setPrice(price);
+            companyService.saveCompany(company);
+        }
+        Iterable<Map<String, Object>> likedCompanies = likeRepository.likedCompanies(username);
+        for (Map<String, Object> company : likedCompanies) {
+            System.out.println("Company details:");
+            for (Map.Entry<String, Object> entry : company.entrySet()) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
+            System.out.println("------");
+        }
+        return likedCompanies;
     }
 }

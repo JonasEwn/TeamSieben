@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="table-container">
+    <table mat-table [dataSource]="all" class="table" matSort matSortActive="created"
+           matSortDisableClear matSortDirection="desc" class="mat-elevation-z8">
+
+
+      <ng-container matColumnDef="wkn">
+        <th mat-header-cell *matHeaderCellDef>WKN</th>
+        <td mat-cell *matCellDef="let row">{{ row.wkn }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Anzahl</th>
+        <td mat-cell *matCellDef="let row">{{ row.quantity }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="profitloss">
+        <th mat-header-cell *matHeaderCellDef>Gewinn / <span [style.color]="'red'">Verlust</span></th>
+        <td mat-cell *matCellDef="let row" [style.color]="((row.price * row.quantity) - row.purchaseTotal) < 0 ? 'red' : 'black'">{{ (row.price * row.quantity) - row.purchaseTotal }} €</td>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef>Aktueller Gesamtpreis</th>
+        <td mat-cell *matCellDef="let row">{{ row.price * row.quantity }} €</td>
+      </ng-container>
+
+      <ng-container matColumnDef="buy">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let row">
+          <!-- Hier fügst du den HTML-Code für die Aktion ein -->
+          <!-- Beispiel: Ein Button, der eine Methode aufruft -->
+          <button mat-stroked-button color="primary" class="item-kaufen-button" (click)="buyItem(row.wkn, $event)">+</button> <!--(click)="buyItem(row.wkn, $event)"-->
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="details(row.wkn)"></tr> <!--(click)="details(row.wkn)"-->
+    </table>
+  </div>
+
+  <div class="paginator-container">
+    <mat-paginator></mat-paginator>
+  </div>
+</div>

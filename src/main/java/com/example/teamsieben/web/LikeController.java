@@ -41,4 +41,10 @@ public class LikeController {
         return new ResponseEntity<>(likes, HttpStatus.OK);
     }
 
+    @GetMapping("/likedcompanies/{username}")
+    public ResponseEntity<Iterable<Map<String, Object>> > likedComapnies(@PathVariable String username){
+        Iterable<Map<String, Object>> likedComapnies = likeService.likedCompanies(username);
+        return new ResponseEntity<>(likedComapnies, HttpStatus.OK);
+    }
+
 }

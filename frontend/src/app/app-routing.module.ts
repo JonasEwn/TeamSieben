@@ -9,6 +9,7 @@ import { LoginComponent } from './views/login/login.component';
 import { LogoutComponent } from './views/logout/logout.component';
 
 import { AuthGuardService } from './shared/auth-core/auth-guard.service';
+import {LikedComponent} from "./views/liked/liked.component";
 
 
 // Route Definiton: More detail under  https://angular.io/api/router/Routes
@@ -64,6 +65,10 @@ const routes: Routes = [
   {
     path: 'overview/users',
     component: UserComponent,
+  },
+  {
+    path: 'likes',
+    component: LikedComponent,
   },
   {
     path: 'impressum',

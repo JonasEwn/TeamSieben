@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {AddItemDialogComponent} from "../../shared/components/add-item-dialog/add-item-dialog.component";
 import {BuyItemDialogComponent} from "../../shared/components/buy-item-dialog/buy-item-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-overview', // Definiert den Selektor für die Komponente

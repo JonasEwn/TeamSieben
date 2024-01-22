@@ -23,6 +23,7 @@ import { LogoutComponent } from './views/logout/logout.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
+import {LikedComponent} from "./views/liked/liked.component";
 // This module is more or less the core-module of the application.
 // In this case such a module is needed to declare the used components and all relevant modules at once.
 // In difference to the AppModule you else could use the Standalone-components.
@@ -36,6 +37,7 @@ import {MatCardModule} from "@angular/material/card";
     ImpressumComponent,
     LoginComponent,
     LogoutComponent,
+    LikedComponent
   ],
   imports: [
     BrowserModule,
