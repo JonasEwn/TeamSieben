@@ -1,6 +1,7 @@
-<div>
+<mat-toolbar>
   <button mat-raised-button class="hinzufügen-button" (click)="addUser()">Neuer Benutzer</button>
-</div>
+</mat-toolbar>
+
 <div class="container">
   <div class="table-container">
     <table mat-table [dataSource]="users" class="table" matSort matSortActive="created"
