@@ -19,6 +19,10 @@ import java.util.*;
 @RequestMapping("/users")
 public class UserController {
 
+    /* Alle Anfragen zu den Benutzer werden hier bearbeitet
+       URL: Localhost:8080/users/...
+    */
+
     private final UserService userService;
 
     public UserController(UserService userService) {

@@ -14,6 +14,10 @@ import java.util.Map;
 @RequestMapping("/portfolio")
 public class ItemController {
 
+    /* Alle Anfragen zu den Käufen werden hier bearbeitet
+       URL: Localhost:8080/portfolio/...
+    */
+
     private final ItemService itemService;
 
     public ItemController(ItemService itemService) {

@@ -4,12 +4,12 @@ Stellt Datenbank-Entitätsobjekte dar
 
 package com.example.teamsieben.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Date;
+
+// Struktur der Item Tabelle
+// Mit getter und setter
 
 @Entity
 @Table(name = "item")
@@ -25,13 +25,6 @@ public class Item {
     @Temporal(TemporalType.DATE)
     private Date purchaseDate;
 
-    // Many To One Test
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_wkn")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private Company company;*/
-    // Ende Many To One Test
 
     public Item() {
     }

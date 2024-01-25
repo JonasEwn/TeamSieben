@@ -1,17 +1,18 @@
 package com.example.teamsieben.service;
 
 import com.example.teamsieben.domain.Company;
-import com.example.teamsieben.domain.Item;
 import com.example.teamsieben.persistence.CompanyRepository;
 import com.example.teamsieben.persistence.SwaggerFeignClient;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 public class CompanyService {
+
+    /* Klasse bearbeitet die Daten die vom Controller gegeben und zurückgegeben werden.
+       GET, POST, PUT, DELETE werden hier durchgeführt
+    */
 
     private final CompanyRepository companyRepository;
 
@@ -38,6 +39,7 @@ public class CompanyService {
     public Company updateCompany(Long id, Company updatedCompany){
         Optional<Company> companyOptional = companyRepository.findById(id);
 
+        // Checkt ob Company Objekt, welches bearbeitet werden soll existiert und setzt dann die neuen Werte.
         if (companyOptional.isPresent() && isInputValid(updatedCompany.getDescription())){
             Company existingCompany = companyOptional.get();
             existingCompany.setWkn(updatedCompany.getWkn());
@@ -80,6 +82,7 @@ public class CompanyService {
         return info;
     }
 
+    // Methode läd die entsprechende Company von der externen Datenbank Swagger
     public Map<String, Object> getCompanyDataFromSwagger(String isin){
         Map<String, Object> swagggerObject = swaggerFeignClient.getObject(isin);
         System.out.println(swagggerObject);
@@ -92,7 +95,11 @@ public class CompanyService {
 
 
     public Iterable<Map<String, Object>> setPriceAndReturnData(){
+        // Läd alle wkns aus der Datenbank
         List<String> wkns = companyRepository.allWkns();
+
+        // Iteriert durch alle WKNS und läd den aktuellen Preis vom Swagger
+        // Anschließend werden die Preise geupdated und wieder in die Datenbank gespeichert
         for (int i = 0; i <= wkns.size() - 1; i++){
             String wkn = wkns.get(i);
             int price = (int) getCompanyDataFromSwagger(wkn).get("price");
@@ -102,10 +109,13 @@ public class CompanyService {
             company.setPrice(price);
             saveCompany(company);
         }
+
+        // Läd alle WKNS aus der Datenbank und gibt die Companies als Iterable zurück
         Iterable<Map<String, Object>> getWknNameQuantityPrice = companyRepository.getWknNameQuantityPrice();
         return getWknNameQuantityPrice;
     }
 
+    // Preis für eine einzelne Firma wird aktualisiert
     public void setPrice(String wkn){
         int price = (int) getCompanyDataFromSwagger(wkn).get("price");
         Company company = getCompanyByWkn(wkn);

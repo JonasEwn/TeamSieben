@@ -41,8 +41,10 @@ public class LikeService {
         return like;
     }
 
+
     public Iterable<Map<String, Object>>  likedCompanies(String username){
         List<String> wkns = likeRepository.getAllWkns();
+        // Iteriert durch wkn Liste und aktualisiert Preise
         for (int i = 0; i <= wkns.size() - 1; i++){
             String wkn = wkns.get(i);
             int price = (int) companyService.getCompanyDataFromSwagger(wkn).get("price");
@@ -53,6 +55,8 @@ public class LikeService {
             companyService.saveCompany(company);
         }
         Iterable<Map<String, Object>> likedCompanies = likeRepository.likedCompanies(username);
+
+        // Nur Konsolen ausgabe, nicht wichtig
         for (Map<String, Object> company : likedCompanies) {
             System.out.println("Company details:");
             for (Map.Entry<String, Object> entry : company.entrySet()) {

@@ -3,6 +3,9 @@ package com.example.teamsieben.domain;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 
+// Struktur der Company Tabelle
+// Mit getter und setter
+
 @Entity
 @Table(name = "company")
 public class Company {

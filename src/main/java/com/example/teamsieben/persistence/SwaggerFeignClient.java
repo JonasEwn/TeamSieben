@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Map;
 
+// Interface frägt Daten vom Swagger ab
+
 @FeignClient(
         value = "Companies",
         url = "https://hsaa-stock-exchange-service.azurewebsites.net/v1/stocks",

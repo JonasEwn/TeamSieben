@@ -2,7 +2,8 @@ package com.example.teamsieben.domain;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
+// Struktur der User Tabelle
+// Mit getter und setter
 
 @Entity
 @Table(name = "users")

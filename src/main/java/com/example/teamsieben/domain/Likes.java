@@ -2,6 +2,10 @@ package com.example.teamsieben.domain;
 
 import jakarta.persistence.*;
 
+// Struktur der Likes Tabelle
+// mit getter und setter
+// Likes hat eine N-1 Beziehung zur Company und zur User Tabelle
+
 @Entity
 @Table(name = "likes")
 public class Likes {

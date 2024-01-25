@@ -3,13 +3,16 @@ package com.example.teamsieben.service;
 import com.example.teamsieben.domain.Item;
 import com.example.teamsieben.persistence.Details;
 import com.example.teamsieben.persistence.ItemRepository;
-//import com.example.teamsieben.persistence.ItemProjection;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class ItemService {
+
+    /* Klasse bearbeitet die Daten die vom ItemController Controller gegeben und zurückgegeben werden sollen.
+       GET, POST, PUT, DELETE werden hier durchgeführt
+    */
 
     private final ItemRepository itemRepository;
     private final CompanyService companyService;
@@ -32,6 +35,7 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
+    // Checkt ob Company Objekt, welches bearbeitet werden soll existiert und setzt dann die neuen Werte.
     public Item updatePortfolioItem(Long id, Item updatedItem) {
         Optional<Item> itemOptional = itemRepository.findById(id);
 
@@ -54,10 +58,6 @@ public class ItemService {
         itemRepository.deleteById(id);
     }
 
-
-    // -------------------------------------------------
-    //     Durchschnittliche Kosten und Gesamtpreis
-    // -------------------------------------------------
 
     public double averageCost(String wkn){
         Iterable<Double> prices = itemRepository.allPrices(wkn);
@@ -90,11 +90,10 @@ public class ItemService {
         return itemsWithSameWkn;
     }
 
+    // Bevor Item abgefragt wird, wird der Preis aktualisiert
     public Details details(String wkn){
         companyService.setPrice(wkn);
         Details details = itemRepository.details(wkn);
         return details;
     }
-    // -------------------------------------------------
-    // -------------------------------------------------
 }

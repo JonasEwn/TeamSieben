@@ -1,11 +1,12 @@
 package com.example.teamsieben.config;
 
-import feign.Request;
 import feign.RequestInterceptor;
 import org.springframework.context.annotation.Bean;
 
+
 public class SwaggerFeignConfig {
 
+    // Bean gibt dem FeignClient ein header mit dem Api-Key
     @Bean
     public RequestInterceptor requestInterceptor(){
 

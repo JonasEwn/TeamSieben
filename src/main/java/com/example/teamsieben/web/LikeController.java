@@ -13,6 +13,10 @@ import java.util.Map;
 @RequestMapping("/likes")
 public class LikeController {
 
+    /* Alle Anfragen zu den Likes werden hier bearbeitet
+       URL: Localhost:8080/likes/...
+    */
+
     private final LikeService likeService;
 
     public LikeController(LikeService likeService) {

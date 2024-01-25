@@ -13,6 +13,10 @@ import java.util.*;
 @RequestMapping("/companies")
 public class CompanyController {
 
+    /* Alle Anfragen zu den Companies werden hier bearbeitet
+       URL: Localhost:8080/companies/...
+    */
+
     private final CompanyService companyService;
 
     public CompanyController(CompanyService companyService) {
