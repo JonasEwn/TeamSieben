@@ -22,8 +22,29 @@
 }
 
 .info-unten {
-  flex-basis: 100%; /* Takes up the full width */
-  text-align: center;
+  display: block; 
+  width: 20%; 
+  box-sizing: border-box; 
+  padding: 10px; 
+  margin: auto; 
+  overflow: hidden; 
+  background-color: #f2f2f2;
+}
+
+.info-unten-bezeichnungen {
+  width: 70%; 
+  box-sizing: border-box; 
+  float: left;
+}
+
+.info-unten-werte {
+  width: 20%; 
+  box-sizing: border-box; 
+  float: right;
+}
+
+.info-unten-werte p{
+  text-align: right;
 }
 
 .custom-card {

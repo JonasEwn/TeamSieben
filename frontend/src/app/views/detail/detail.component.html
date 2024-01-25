@@ -22,16 +22,19 @@
     </div>
   </div>
   <div class="info-unten">
-    <p>
-      Kaufpreis Durchschnitt: {{ generalInfoTest.averagePrice?.toFixed(2) }} €
-      <br>
-      Aktueller Kurs: {{ generalInfoTest.price }} €
-      <br>
-      Gewinn / Verlust pro Aktie: {{ (generalInfoTest.price - generalInfoTest.averagePrice).toFixed(2) }} €
-      <br>
-      Gewinn / Verlust Gesamt: {{ (generalInfoTest.price * generalInfoTest.quantity) - (generalInfoTest.averagePrice * generalInfoTest.quantity) }} €
-    </p>
-  </div>
+    <div class="info-unten-bezeichnungen">
+      <p>Kaufpreis Durchschnitt:</p>
+      <p>Aktueller Kurs:</p>
+      <p>Gewinn / Verlust pro Aktie:</p>
+      <p>Gewinn / Verlust Gesamt:</p>
+    </div>
+    <div class="info-unten-werte">
+      <p><b>{{ generalInfoTest.averagePrice?.toFixed(2) }} €</b></p>
+      <p><b>{{ generalInfoTest.price }} €</b></p>
+      <p><b>{{ (generalInfoTest.price - generalInfoTest.averagePrice).toFixed(2) }} €</b></p>
+      <p><b>{{ (generalInfoTest.price * generalInfoTest.quantity) - (generalInfoTest.averagePrice * generalInfoTest.quantity) }} €</b></p>
+    </div>
+  </div>  
 </div>
 
 <div class="container">
