@@ -55,6 +55,9 @@ export class AddUserDialogComponent {
     );
   }
 
+  // Checkt ob username Feld Fehler hatt
+  // control.dirty gibt an ob Form-Feld eintrag hat (true wenn ja)
+  // Wenn alles True gibt es true zurück wenn ein Fehler gibt, dann False
   hasError(controlName: string): boolean {
     const control = this.myForm.get(controlName);
     return !!((control && (control.dirty || control.touched) && control.invalid) || this.postError);

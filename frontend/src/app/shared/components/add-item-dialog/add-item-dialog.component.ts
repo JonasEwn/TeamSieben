@@ -87,6 +87,7 @@ export class AddItemDialogComponent {
   }
 
 
+  // Teilt Daten in Company und Item (kauf) auf und sendet beide Anfragen nacheinander
   onSubmit(){
 
     const itemData = {
