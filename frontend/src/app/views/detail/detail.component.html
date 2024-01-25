@@ -31,8 +31,12 @@
     <div class="info-unten-werte">
       <p><b>{{ generalInfoTest.averagePrice?.toFixed(2) }} €</b></p>
       <p><b>{{ generalInfoTest.price }} €</b></p>
-      <p><b>{{ (generalInfoTest.price - generalInfoTest.averagePrice).toFixed(2) }} €</b></p>
-      <p><b>{{ (generalInfoTest.price * generalInfoTest.quantity) - (generalInfoTest.averagePrice * generalInfoTest.quantity) }} €</b></p>
+      <p [style.color]="(generalInfoTest.price - generalInfoTest.averagePrice) < 0 ? 'red' : 'black'">
+        <b>{{ (generalInfoTest.price - generalInfoTest.averagePrice).toFixed(2) }} €</b>
+      </p>
+      <p [style.color]="(generalInfoTest.price * generalInfoTest.quantity - generalInfoTest.averagePrice * generalInfoTest.quantity) < 0 ? 'red' : 'black'">
+        <b>{{ (generalInfoTest.price * generalInfoTest.quantity - generalInfoTest.averagePrice * generalInfoTest.quantity) }} €</b>
+      </p>
     </div>
   </div>  
 </div>
