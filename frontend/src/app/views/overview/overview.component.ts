@@ -21,6 +21,9 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
               public dialog: MatDialog) {
   }
 
+  // Läd alle Companies und dann von dem angemeldeten Benutzer die geliketen Companies
+  // Wenn WKN von Company in beiden anfragen vorhanden ist wird der Like-Button direkt auf True gesetzt,
+  // da Company bereits von User geliked wurde
   ngOnInit(): void {
     this.httpClient.get('http://localhost:8080/companies/prices').subscribe(
       data => {
@@ -62,6 +65,7 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
     this.router.navigate(['overview/users']);
   }
 
+  // Wenn like Button gekliked wird entweder Like hinzugefügt oder entfernt
   openUserLikes(row: any, event: Event){
     event.stopPropagation()
     row.isLiked = !row.isLiked
@@ -73,6 +77,7 @@ export class OverviewComponent implements OnInit {// Deklariert eine Referenz zu
     }
   }
 
+  // Checkt ob wkn von Company === wkn von Likes
   isCompanyLiked(company: any): boolean {
     return this.likedCompanies.some(likedCompany => likedCompany.company.wkn === company.wkn);
   }

@@ -22,6 +22,7 @@ export class BuyItemDialogComponent implements OnInit{
   itemData: object = [];
   currentDate = new Date();
 
+  // @Inject holt sich Variable die von einer anderen Komponente mitgegeben wird
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private fb: FormBuilder,
               private httpClient: HttpClient,
@@ -39,6 +40,7 @@ export class BuyItemDialogComponent implements OnInit{
     console.log('Wkn wird übergeben: ', this.data.wkn);
   }
 
+  // Wenn Item kaufen (Plus Knopf) gedrückt wird werden Company Daten von WKN abgefragt
   ngOnInit() {
 
     this.httpClient.get<any>(`http://localhost:8080/companies/company/${this.data.wkn}`).subscribe(

@@ -46,6 +46,7 @@ export class UpdateUserComponent {
     );
   }
 
+  // Wird nicht verwendet
   hasError(controlName: string): boolean {
     const control = this.myForm.get(controlName);
     return !!((control && (control.dirty || control.touched) && control.invalid) || this.postError);

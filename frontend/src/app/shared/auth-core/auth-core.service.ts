@@ -12,6 +12,7 @@ export class AuthCoreService {
   private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient, private router: Router) {}
 
+  // Prüft ob Token vorhanden ist und User somit Authentifiziert ist
   public isAuthenticated$(): Observable<boolean> {
     let token = this.getToken();
     if (token === undefined || token === null) {
@@ -23,6 +24,7 @@ export class AuthCoreService {
     return this.isAuthenticatedSubject.asObservable();
   }
 
+  // Schickt Login Anfrage und handelt Erfolgreich Logins
   public login(username: string, password: string) {
     return this.http.get(LOGIN_URL,
       {

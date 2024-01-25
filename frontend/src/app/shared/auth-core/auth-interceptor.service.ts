@@ -13,6 +13,7 @@ import {
   export class AuthInterceptorService implements HttpInterceptor {
     constructor(private auth: AuthCoreService) {}
 
+    // Fügt zu jeder Anfrage den Authentifizierungs-Header hinzu
     intercept(
       req: HttpRequest<any>,
       next: HttpHandler
