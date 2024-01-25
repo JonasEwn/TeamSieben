@@ -22,7 +22,7 @@ Diese Readme-Datei enthält Informationen zur Verwendung unserer Trading-Webseit
 - JDK 17
 - NPM
 - Node.js
-- [Angular Material (für die Darstellung)] (https://material.angular.io/components/categories)
+- [Angular Material (für die Darstellung)](https://material.angular.io/components/categories)
 
 ##Installation:
 Zunächst muss die Anwendung über unser [Git Repository] (https://github.com/JonasEwn/TeamSieben/tree/new_master) heruntergeladen werden. Die vollständige Version ist im Branch "new_master" abrufbar. Der hintergelegte Link führt zu dem genannten Branch.
